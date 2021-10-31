@@ -13,6 +13,10 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use("/api/cargos", require("./routes/cargo"));
+app.use("/api/clubes", require("./routes/club"));
+app.use("/api/dirigentes", require("./routes/dirigente"));
+app.use("/api/entrenadores", require("./routes/entrenador"));
 app.use("/api/jugadores", require("./routes/jugador"));
 
 app.listen(4000, () => {
