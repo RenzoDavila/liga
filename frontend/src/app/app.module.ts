@@ -20,6 +20,8 @@ import { DirCrearEditarComponent } from './components/dirigente/dir-crear-editar
 import { EntCrearEditarComponent } from './components/entrenador/ent-crear-editar/ent-crear-editar.component';
 import { EntVerComponent } from './components/entrenador/ent-ver/ent-ver.component';
 import { DirVerComponent } from './components/dirigente/dir-ver/dir-ver.component';
+import { CluCrearEditarComponent } from './components/club/clu-crear-editar/clu-crear-editar.component';
+import { CarCrearEditarComponent } from './components/cargo/car-crear-editar/car-crear-editar.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { DirVerComponent } from './components/dirigente/dir-ver/dir-ver.componen
     EntCrearEditarComponent,
     EntVerComponent,
     DirVerComponent,
+    CluCrearEditarComponent,
+    CarCrearEditarComponent,
   ],
   imports: [
     BrowserModule,

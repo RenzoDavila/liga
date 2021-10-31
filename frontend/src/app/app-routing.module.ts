@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
+import { CluCrearEditarComponent } from './components/club/clu-crear-editar/clu-crear-editar.component';
 import { DirCrearEditarComponent } from './components/dirigente/dir-crear-editar/dir-crear-editar.component';
 import { DirVerComponent } from './components/dirigente/dir-ver/dir-ver.component';
 import { EntCrearEditarComponent } from './components/entrenador/ent-crear-editar/ent-crear-editar.component';
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'dirigente', component: DirVerComponent },
   { path: 'crear-dirigente', component: DirCrearEditarComponent },
   { path: 'editar-dirigente/:id', component: DirCrearEditarComponent },
+  { path: 'crear-club', component: CluCrearEditarComponent },
+  { path: 'editar-club/:id', component: CluCrearEditarComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

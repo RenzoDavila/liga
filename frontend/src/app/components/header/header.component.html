@@ -5,20 +5,22 @@
     scrolling-navbar
     bg-inverse
   "
+  id="navbar"
 >
-  <div class="container">
+  <div class="container" id="navbarContainer">
     <button
+      id="navbarVerButton"
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
+      data-bs-target="#navbarVer"
+      aria-controls="navbarVer"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarDetalle">
       <ul class="navbar-nav me-auto">
         <li class="nav-item dropdown">
           <a
@@ -48,9 +50,53 @@
                 >DIRIGENTE</a
               >
             </li>
+
+            <li>
+              <a class="dropdown-item" [routerLink]="['/club']">CLUB</a>
+            </li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownBlog"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >INGRESAR</a
+          >
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownBlog"
+            style="left: 10px"
+          >
+            <li>
+              <a class="dropdown-item" [routerLink]="['/crear-jugador']"
+                >NUEVO JUGADOR</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/crear-entrenador']"
+                >NUEVO ENTRENADOR</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/crear-dirigente']"
+                >NUEVO DIRIGENTE</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/crear-club']"
+                >NUEVO CLUB</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- <li class="nav-item">
           <a class="nav-link" [routerLink]="['/Inicio']">INGRESAR</a>
         </li>
         <li class="nav-item">
@@ -62,13 +108,13 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/Unetenos']">Únetenos</a>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/Galeria']">Galeria</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/Otro']">Otro</a>
-        </li> -->
-        <!-- <li class="nav-item dropdown">
+        </li>
+        <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
             id="navbarDropdownBlog"
@@ -89,9 +135,7 @@
               <a class="dropdown-item" href="blog-post.html">Blog Post</a>
             </li>
           </ul>
-        </li>-->
-      </ul>
-    </div>
+        </li> -->
     <a class="navbar-brand" [routerLink]="['/']"
       ><img
         src="assets/img/logo.png"
