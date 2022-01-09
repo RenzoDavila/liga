@@ -10,7 +10,7 @@ export class ClubService {
   url = 'http://localhost:4000/api/clubes/';
   constructor(private http: HttpClient) {}
 
-  getclubes(): Observable<any> {
+  getClubes(): Observable<any> {
     return this.http.get(this.url);
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Jugador } from 'src/app/models/jugador';
+import { Jugador } from 'src/app/models/Jugador';
 import { JugadorService } from 'src/app/services/jugador/jugador.service';
 
 @Component({

@@ -9,13 +9,16 @@
             [formGroup]="jugadorForm"
             (ngSubmit)="agregarJugador()"
           >
-            <div class="row mb-3">
-              <div class="col-6">
+            <div class="row mb-4">
+              <div class="col-2">
+                <label for="dni">DNI</label>
                 <input
+                  id="dni"
                   type="text"
                   formControlName="dni"
                   class="form-control form-control-lg"
                   placeholder="DNI"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
                 />
                 <div
                   class="text-danger"
@@ -27,44 +30,10 @@
                   <span>Este campo es <strong>obligatorio</strong></span>
                 </div>
               </div>
-              <div class="col-3">
-                <input
-                  type="text"
-                  formControlName="libro"
-                  class="form-control form-control-lg"
-                  placeholder="Libro"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('libro')?.hasError('required') &&
-                    jugadorForm.get('libro')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
-                </div>
-              </div>
-              <div class="col-3">
-                <input
-                  type="text"
-                  formControlName="folio"
-                  class="form-control form-control-lg"
-                  placeholder="Folio"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('folio')?.hasError('required') &&
-                    jugadorForm.get('folio')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-3">
               <div class="col">
+                <label for="nombres">NOMBRES</label>
                 <input
+                  id="nombres"
                   type="text"
                   formControlName="nombres"
                   class="form-control form-control-lg"
@@ -81,7 +50,9 @@
                 </div>
               </div>
               <div class="col">
+                <label for="apellidos">APELLIDOS</label>
                 <input
+                  id="apellidos"
                   type="text"
                   formControlName="apellidos"
                   class="form-control form-control-lg"
@@ -97,8 +68,71 @@
                   <span>Este campo es <strong>obligatorio</strong></span>
                 </div>
               </div>
-              <div class="col-3">
+            </div>
+            <div class="row mb-4">
+              <div class="col-2">
+                <label for="libro">LIBRO</label>
                 <input
+                  id="libro"
+                  type="number"
+                  formControlName="libro"
+                  class="form-control form-control-lg"
+                  placeholder="Libro"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('libro')?.hasError('required') &&
+                    jugadorForm.get('libro')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col-2">
+                <label for="folio">FOLIO</label>
+                <input
+                  id="folio"
+                  type="number"
+                  formControlName="folio"
+                  class="form-control form-control-lg"
+                  placeholder="Folio"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('folio')?.hasError('required') &&
+                    jugadorForm.get('folio')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col-3">
+                <label for="fecha_nacimiento">FECHA DE NAC.</label>
+                <input
+                  id="fecha_nacimiento"
+                  type="date"
+                  formControlName="fecha_nacimiento"
+                  class="form-control form-control-lg"
+                  placeholder="dd/mm/aaaa"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('fecha_nacimiento')?.hasError('required') &&
+                    jugadorForm.get('fecha_nacimiento')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col-3">
+                <label for="categoria">CATEGORIA</label>
+                <input
+                  id="categoria"
                   type="text"
                   formControlName="categoria"
                   class="form-control form-control-lg"
@@ -115,26 +149,30 @@
                 </div>
               </div>
             </div>
-            <div class="row mb-3">
-              <div class="col-4">
+            <div class="row mb-4">
+              <div class="col">
+                <label for="nacionalidad">NACIONALIDAD</label>
                 <input
-                  type="date"
-                  formControlName="fecha_nacimiento"
+                  id="nacionalidad"
+                  type="text"
+                  formControlName="nacionalidad"
                   class="form-control form-control-lg"
-                  placeholder="dd/mm/aaaa"
+                  placeholder="Nacionalidad"
                 />
                 <div
                   class="text-danger"
                   *ngIf="
-                    jugadorForm.get('fecha_nacimiento')?.hasError('required') &&
-                    jugadorForm.get('fecha_nacimiento')?.touched
+                    jugadorForm.get('nacionalidad')?.hasError('required') &&
+                    jugadorForm.get('nacionalidad')?.touched
                   "
                 >
-                  <span>Este campo es <strong>obligatorio</strong></span>
+                  <span>Este campo es <strong>obligatoria</strong></span>
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col">
+                <label for="ciudad_nacimiento">CIUDAD DE NAC.</label>
                 <input
+                  id="ciudad_nacimiento"
                   type="text"
                   formControlName="ciudad_nacimiento"
                   class="form-control form-control-lg"
@@ -152,61 +190,10 @@
                   <span>Este campo es <strong>obligatorio</strong></span>
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-3">
+                <label for="fecha_inscripcion">FEC. INSCRIPCION</label>
                 <input
-                  type="text"
-                  formControlName="nacionalidad"
-                  class="form-control form-control-lg"
-                  placeholder="Nacionalidad"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('nacionalidad')?.hasError('required') &&
-                    jugadorForm.get('nacionalidad')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatoria</strong></span>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-4">
-                <input
-                  type="text"
-                  formControlName="club_inicial"
-                  class="form-control form-control-lg"
-                  placeholder="Club Inicial"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('club_inicial')?.hasError('required') &&
-                    jugadorForm.get('club_inicial')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
-                </div>
-              </div>
-              <div class="col-4">
-                <input
-                  type="text"
-                  formControlName="club_actual"
-                  class="form-control form-control-lg"
-                  placeholder="Club Actual"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('club_actual')?.hasError('required') &&
-                    jugadorForm.get('club_actual')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
-                </div>
-              </div>
-              <div class="col-4">
-                <input
+                  id="fecha_inscripcion"
                   type="date"
                   formControlName="fecha_inscripcion"
                   class="form-control form-control-lg"
@@ -225,7 +212,55 @@
                 </div>
               </div>
             </div>
-            <div class="mb-3">
+            <div class="row mb-4">
+              <div class="col-4">
+                <label for="club">CLUB</label>
+                <select
+                  id="club"
+                  class="form-select form-select-lg mb-4"
+                  formControlName="club"
+                  (change)="slcClubChange()"
+                >
+                  <option disabled [ngValue]="">Seleccione un club</option>
+                  <option
+                    *ngFor="let club of listClubes"
+                    [ngValue]="club.detalle"
+                  >
+                    {{ club.detalle }}
+                  </option>
+                </select>
+                <div
+                  class="text-danger"
+                  *ngIf="slcClub && jugadorForm.get('club')?.touched"
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col">
+                <label *ngIf="this.id !== null" for="club_inicial"
+                  >CLUB INICIAL</label
+                >
+                <input
+                  id="club_inicial"
+                  type="text"
+                  formControlName="club_inicial"
+                  class="form-control form-control-lg"
+                  placeholder="Club inicial"
+                  *ngIf="this.id !== null"
+                  readonly
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('club_inicial')?.hasError('required') &&
+                    jugadorForm.get('club_inicial')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
               <button
                 routerLink="/jugador"
                 class="btn btn-secondary btn-lg float-start"

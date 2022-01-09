@@ -10,7 +10,7 @@ export class CargoService {
   url = 'http://localhost:4000/api/cargos/';
   constructor(private http: HttpClient) {}
 
-  getcargos(): Observable<any> {
+  getCargos(): Observable<any> {
     return this.http.get(this.url);
   }
 

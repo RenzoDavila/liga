@@ -1,1 +1,154 @@
-<p>ent-crear-editar works!</p>
+<div class="container mt-5">
+  <div class="row cuerpo">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">{{ titulo | uppercase }}</span>
+          <form
+            class="mt-4"
+            [formGroup]="entrenadorForm"
+            (ngSubmit)="agregarEntrenador()"
+          >
+            <div class="row mb-2">
+              <div class="col-2">
+                <label for="dni">DNI</label>
+                <input
+                  type="text"
+                  formControlName="dni"
+                  class="form-control form-control-lg"
+                  id="dni"
+                  placeholder=""
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    entrenadorForm.get('dni')?.hasError('required') &&
+                    entrenadorForm.get('dni')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col">
+                <label for="nombres">NOMBRES</label>
+                <input
+                  id="nombres"
+                  type="text"
+                  formControlName="nombres"
+                  class="form-control form-control-lg"
+                  placeholder=""
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    entrenadorForm.get('nombres')?.hasError('required') &&
+                    entrenadorForm.get('nombres')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col">
+                <label for="apellidos">APELLIDOS</label>
+                <input
+                  id="apellidos"
+                  type="text"
+                  formControlName="apellidos"
+                  class="form-control form-control-lg"
+                  placeholder=""
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    entrenadorForm.get('apellidos')?.hasError('required') &&
+                    entrenadorForm.get('apellidos')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-5">
+                <label for="club">CLUB</label>
+                <select
+                  id="club"
+                  class="form-select form-select-lg mb-3"
+                  formControlName="club"
+                  (change)="slcClubChange()"
+                >
+                  <option disabled [ngValue]="">Seleccione un club</option>
+                  <option
+                    *ngFor="let club of listClubes"
+                    [ngValue]="club.detalle"
+                  >
+                    {{ club.detalle }}
+                  </option>
+                </select>
+                <div
+                  class="text-danger"
+                  *ngIf="slcClub && entrenadorForm.get('club')?.touched"
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col-3">
+                <label for="telefono">TELÉFONO</label>
+                <input
+                  id="telefono"
+                  type="text"
+                  formControlName="telefono"
+                  class="form-control form-control-lg"
+                  placeholder=""
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    entrenadorForm.get('telefono')?.hasError('required') &&
+                    entrenadorForm.get('telefono')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col-4">
+                <label for="telefono">NACIONALIDAD</label>
+                <input
+                  id="nacionalidad"
+                  type="text"
+                  formControlName="nacionalidad"
+                  class="form-control form-control-lg"
+                  placeholder=""
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    entrenadorForm.get('nacionalidad')?.hasError('required') &&
+                    entrenadorForm.get('nacionalidad')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <button
+                routerLink="/entrenador"
+                class="btn btn-secondary btn-lg float-start"
+              >
+                VOLVER
+              </button>
+              <button
+                type="submit"
+                [disabled]="entrenadorForm.invalid"
+                class="btn btn-success btn-lg float-end"
+              >
+                ACEPTAR
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

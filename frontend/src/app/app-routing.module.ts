@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
+import { CarCrearEditarComponent } from './components/cargo/car-crear-editar/car-crear-editar.component';
+import { CarVerComponent } from './components/cargo/car-ver/car-ver.component';
 import { CluCrearEditarComponent } from './components/club/clu-crear-editar/clu-crear-editar.component';
+import { CluVerComponent } from './components/club/clu-ver/clu-ver.component';
 import { DirCrearEditarComponent } from './components/dirigente/dir-crear-editar/dir-crear-editar.component';
 import { DirVerComponent } from './components/dirigente/dir-ver/dir-ver.component';
 import { EntCrearEditarComponent } from './components/entrenador/ent-crear-editar/ent-crear-editar.component';
@@ -20,8 +23,12 @@ const routes: Routes = [
   { path: 'dirigente', component: DirVerComponent },
   { path: 'crear-dirigente', component: DirCrearEditarComponent },
   { path: 'editar-dirigente/:id', component: DirCrearEditarComponent },
+  { path: 'club', component: CluVerComponent },
   { path: 'crear-club', component: CluCrearEditarComponent },
   { path: 'editar-club/:id', component: CluCrearEditarComponent },
+  { path: 'cargo', component: CarVerComponent },
+  { path: 'crear-cargo', component: CarCrearEditarComponent },
+  { path: 'editar-cargo/:id', component: CarCrearEditarComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

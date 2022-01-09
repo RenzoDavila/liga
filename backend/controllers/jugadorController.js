@@ -22,6 +22,18 @@ exports.obtenerJugadores = async (req, res) => {
   }
 };
 
+exports.getByClub = async (req, res) => {
+  try {
+    const club_actual = req.query;
+    console.log(club_actual);
+    const club = await Jugador.find(club_actual);
+    res.json(club);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("tenemos problemas en visualizar Jugadores");
+  }
+};
+
 exports.actualizarJugador = async (req, res) => {
   try {
     const {

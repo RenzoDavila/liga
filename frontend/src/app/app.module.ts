@@ -22,6 +22,9 @@ import { EntVerComponent } from './components/entrenador/ent-ver/ent-ver.compone
 import { DirVerComponent } from './components/dirigente/dir-ver/dir-ver.component';
 import { CluCrearEditarComponent } from './components/club/clu-crear-editar/clu-crear-editar.component';
 import { CarCrearEditarComponent } from './components/cargo/car-crear-editar/car-crear-editar.component';
+import { CarVerComponent } from './components/cargo/car-ver/car-ver.component';
+import { CluVerComponent } from './components/club/clu-ver/clu-ver.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,8 @@ import { CarCrearEditarComponent } from './components/cargo/car-crear-editar/car
     DirVerComponent,
     CluCrearEditarComponent,
     CarCrearEditarComponent,
+    CarVerComponent,
+    CluVerComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,7 @@ import { CarCrearEditarComponent } from './components/cargo/car-crear-editar/car
     Ng2OrderModule,
     NgxPaginationModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
