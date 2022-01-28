@@ -30,7 +30,7 @@ exports.getByClub = async (req, res) => {
     res.json(club);
   } catch (error) {
     console.log(error);
-    res.status(500).send("tenemos problemas en visualizar Jugadores");
+    res.status(500).send("tenemos problemas en visualizar    Jugadores");
   }
 };
 
