@@ -4,7 +4,7 @@
   "description": "API de la liga nacional de basketball peruano",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "start": "nodemon index.js"
   },
   "author": "Renzo Jhair Davila Acosta",
   "license": "ISC",
