@@ -1,10 +1,5 @@
 <nav
-  class="
-    navbar navbar-expand-lg navbar-dark
-    absolute-top
-    scrolling-navbar
-    bg-inverse
-  "
+  class="navbar navbar-expand-lg navbar-dark absolute-top scrolling-navbar bg-inverse"
   id="navbar"
 >
   <div class="container" id="navbarContainer">
@@ -13,8 +8,8 @@
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarVer"
-      aria-controls="navbarVer"
+      data-bs-target="#navbarDetalle"
+      aria-controls="navbarDetalle"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
@@ -25,7 +20,7 @@
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
-            id="navbarDropdownBlog"
+            id="navbarDropdown"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -34,7 +29,7 @@
           >
           <ul
             class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="navbarDropdownBlog"
+            aria-labelledby="navbarDropdown"
             style="left: 10px"
           >
             <li>
@@ -55,7 +50,7 @@
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
-            id="navbarDropdownBlog"
+            id="navbarDropdown"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -64,7 +59,7 @@
           >
           <ul
             class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="navbarDropdownBlog"
+            aria-labelledby="navbarDropdown"
             style="left: 10px"
           >
             <li>
@@ -87,7 +82,7 @@
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
-            id="navbarDropdownBlog"
+            id="navbarDropdown"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -96,7 +91,7 @@
           >
           <ul
             class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="navbarDropdownBlog"
+            aria-labelledby="navbarDropdown"
             style="left: 10px"
           >
             <li>
@@ -106,6 +101,9 @@
               <a class="dropdown-item" [routerLink]="['/cargo']">CARGO</a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/jugadores-pdf']">CARNETS</a>
         </li>
       </ul>
     </div>
@@ -131,7 +129,7 @@
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
-            id="navbarDropdownBlog"
+            id="navbarDropdown"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
@@ -140,7 +138,7 @@
           >
           <ul
             class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="navbarDropdownBlog"
+            aria-labelledby="navbarDropdown"
           >
             <li>
               <a class="dropdown-item" href="blog-home.html">Blog Home</a>

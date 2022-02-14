@@ -11,6 +11,8 @@ import { EntCrearEditarComponent } from './components/entrenador/ent-crear-edita
 import { EntVerComponent } from './components/entrenador/ent-ver/ent-ver.component';
 import { JugCrearEditarComponent } from './components/jugador/jug-crear-editar/jug-crear-editar.component';
 import { JugVerComponent } from './components/jugador/jug-ver/jug-ver.component';
+import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-pdf.component';
+import { PrePdfComponent } from './components/pdf/pre-pdf/pre-pdf.component';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent },
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: 'cargo', component: CarVerComponent },
   { path: 'crear-cargo', component: CarCrearEditarComponent },
   { path: 'editar-cargo/:id', component: CarCrearEditarComponent },
+  { path: 'vizualizacion-pdf', component: PrePdfComponent },
+  { path: 'jugadores-pdf', component: JugadoresPdfComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

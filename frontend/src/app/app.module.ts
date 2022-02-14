@@ -25,6 +25,8 @@ import { CarCrearEditarComponent } from './components/cargo/car-crear-editar/car
 import { CarVerComponent } from './components/cargo/car-ver/car-ver.component';
 import { CluVerComponent } from './components/club/clu-ver/clu-ver.component';
 import { DatePipe } from '@angular/common';
+import { PrePdfComponent } from './components/pdf/pre-pdf/pre-pdf.component';
+import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-pdf.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { DatePipe } from '@angular/common';
     CarCrearEditarComponent,
     CarVerComponent,
     CluVerComponent,
+    PrePdfComponent,
+    JugadoresPdfComponent,
   ],
   imports: [
     BrowserModule,
