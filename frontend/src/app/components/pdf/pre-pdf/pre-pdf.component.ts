@@ -13,6 +13,8 @@ import { Jugador } from 'src/app/models/Jugador';
 export class PrePdfComponent implements OnInit {
   data = this._jugadorService.getData();
   listJugadores: Jugador[] = [];
+  currentTime = new Date();
+  year = this.currentTime.getFullYear();
   Movies: any[] = [
     {
       name: 'Avengers: Endgame',
@@ -34,6 +36,12 @@ export class PrePdfComponent implements OnInit {
     },
     {
       name: 'Mi pelicula mia de mi',
+    },
+    {
+      name: 'ASCADACS',
+    },
+    {
+      name: 'procedo a XD',
     },
   ];
   constructor(private _jugadorService: JugadorService, private router: Router) {
@@ -72,12 +80,15 @@ export class PrePdfComponent implements OnInit {
 
   download() {
     console.log('en descargar pdf');
-    var doc = new jsPDF();
+    var doc = new jsPDF('p', 'mm', [297, 210]);
     var pageHeight = doc.internal.pageSize.height;
+    var pageWidth = doc.internal.pageSize.width;
     var newImgDel = '';
     var newImg = '';
     var elementDel = document.getElementById('carnet-delantero');
     var element = document.getElementById('carnet-trasero');
+
+    console.log('el ancho de la pagina es ', pageWidth);
 
     if (elementDel != null) {
       html2canvas(elementDel).then((canvasDel) => {
@@ -92,8 +103,8 @@ export class PrePdfComponent implements OnInit {
         newImg = canvas.toDataURL('image/png');
 
         setTimeout(function () {
-          // doc.addImage(newImgDel, 0, 6, 170, 45);
-          doc.addImage(newImgDel, 0, 6, 170, 225);
+          // doc.addImage(newImgDel, 19.82, 6, 170, 50);
+          doc.addImage(newImgDel, 19.82, 6, 170, 250);
         }, 2000);
 
         var y = 500;
@@ -106,7 +117,8 @@ export class PrePdfComponent implements OnInit {
         }
 
         setTimeout(function () {
-          doc.addImage(newImg, 39.6, 6, 170, 225);
+          // doc.addImage(newImg, 19.82, 6, 170, 50);
+          doc.addImage(newImg, 19.82, 6, 170, 250);
         }, 3000);
 
         setTimeout(function () {

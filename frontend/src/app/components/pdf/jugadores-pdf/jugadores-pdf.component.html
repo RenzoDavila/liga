@@ -39,7 +39,6 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Categoria</th>
                 <th scope="col">Club</th>
-                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -48,16 +47,6 @@
                 <td>{{ Jugador.nombres }} {{ Jugador.apellidos }}</td>
                 <td>{{ Jugador.categoria }}</td>
                 <td>{{ Jugador.club_actual }}</td>
-                <td>
-                  <i
-                    [routerLink]="['/editar-jugador', Jugador._id]"
-                    class="fa fa-pencil text-success"
-                  ></i
-                  ><i
-                    (click)="eliminarJugador(Jugador._id)"
-                    class="fa fa-trash text-primary"
-                  ></i>
-                </td>
               </tr>
             </tbody>
           </table>
