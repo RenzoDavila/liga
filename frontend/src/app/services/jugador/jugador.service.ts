@@ -2,13 +2,29 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Jugador } from 'src/app/models/Jugador';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JugadorService {
   url = 'http://localhost:4000/api/jugadores/';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
+  private data: any;
+
+  setData(data: any) {
+    this.data = data;
+  }
+
+  getData() {
+    let temp = this.data;
+    this.clearData();
+    return temp;
+  }
+
+  clearData() {
+    this.data = undefined;
+  }
 
   getJugadores(): Observable<any> {
     return this.http.get(this.url);

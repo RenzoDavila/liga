@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Jugador } from 'src/app/models/Jugador';
 import { JugadorService } from 'src/app/services/jugador/jugador.service';
@@ -10,10 +11,12 @@ import { JugadorService } from 'src/app/services/jugador/jugador.service';
 })
 export class JugadoresPdfComponent implements OnInit {
   listJugadores: Jugador[] = [];
+  listJugadoresTabla: Jugador[] = [];
 
   constructor(
     private _jugadorService: JugadorService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,13 +27,35 @@ export class JugadoresPdfComponent implements OnInit {
   obtenerJugadores() {
     this._jugadorService.getJugadores().subscribe(
       (data) => {
-        console.log('data', data);
+        console.log('ashkjasdfjahsjf', data);
         this.listJugadores = data;
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+  sleccionado(jugador: any) {
+    console.log('dni', jugador);
+    this._jugadorService.getJugador(jugador).subscribe(
+      (data) => {
+        console.log('data', data);
+        this.listJugadoresTabla.push(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    console.log('this.listJugadoresTabla', this.listJugadoresTabla);
+  }
+
+  quitar() {
+    this.listJugadoresTabla.pop();
+  }
+
+  ver() {
+    this._jugadorService.setData(this.listJugadoresTabla);
+    this.router.navigateByUrl('/vizualizacion-pdf');
   }
 
   eliminarJugador(id: any) {

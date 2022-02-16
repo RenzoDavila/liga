@@ -1,29 +1,175 @@
-<button class="btn btn-info float-end" (click)="download()">
-  DESCARGAR PFD
-</button>
-<div id="id">
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
-  <h1>pdf works!</h1>
+<div class="container">
+  <div class="row cuerpo">
+    <div class="col-lg-12">
+      <div class="row mb-4">
+        <div class="col-12 text-center">
+          <button class="btn btn-info" (click)="download()">
+            DESCARGAR PFD
+          </button>
+        </div>
+      </div>
+      <div class="row mb-2 mt-4">
+        <div class="col-12 text-left" style="background-color: white">
+          <h2>PARTE DELANTERA</h2>
+        </div>
+      </div>
+      <div id="carnet-delantero" style="width: 1116px">
+        <div *ngFor="let movie of Movies; let i = index">
+          <div *ngIf="parImpar(i)">
+            <div class="row" style="width: 1116px">
+              <div class="col">
+                <div
+                  class="border border-dark"
+                  id="card"
+                  style="margin-left: 30px"
+                >
+                  <img src="assets/img/carnet/fdpb.png" class="img1" />
+                  <img
+                    src="assets/img/carnet/escudoArequipa.png"
+                    class="img2"
+                  />
+                  <h2>
+                    LIGA DEPORTIVA DISTRITAL DE BASKETBALL MASCULINO DE AREQUIPA
+                  </h2>
+                  <div class="h1 border border-dark">
+                    <h1>{{ Movies[i].name }}</h1>
+                  </div>
+                  <br />
+                  <br />
+                  <div class="foto border border-dark"></div>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <div class="row" style="width: 348px">
+                    <div class="col">
+                      <p class="bottom">_________________ SECRETARIO</p>
+                    </div>
+
+                    <div class="col">
+                      <p class="bottom">_________________ PRESIDENTE</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col" *ngIf="i + 1 < Movies.length">
+                <div
+                  class="border border-dark"
+                  id="card"
+                  style="margin-left: -26px"
+                >
+                  <img src="assets/img/carnet/fdpb.png" class="img1" />
+                  <img
+                    src="assets/img/carnet/escudoArequipa.png"
+                    class="img2"
+                  />
+                  <h2>
+                    LIGA DEPORTIVA DISTRITAL DE BASKETBALL MASCULINO DE AREQUIPA
+                  </h2>
+                  <div class="h1 border border-dark">
+                    <h1>{{ Movies[i + 1].name }}</h1>
+                  </div>
+                  <br />
+                  <br />
+                  <div class="foto border border-dark"></div>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <div class="row" style="width: 348px">
+                    <div class="col">
+                      <p class="bottom">_________________ SECRETARIO</p>
+                    </div>
+
+                    <div class="col">
+                      <p class="bottom">_________________ PRESIDENTE</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col" *ngIf="i + 1 >= Movies.length">
+                <div
+                  class="border border-dark"
+                  id="card"
+                  style="margin-left: -26px"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-2 mt-4">
+        <div class="col-12 text-left" style="background-color: white">
+          <h2>PARTE TRASERA</h2>
+        </div>
+      </div>
+      <div id="carnet-trasero" style="width: 1116px">
+        <div *ngFor="let movie of Movies; let i = index">
+          <div *ngIf="parImpar(i)">
+            <div class="row" style="width: 1116px">
+              <div class="col" *ngIf="i + 1 < Movies.length">
+                <div
+                  class="border border-dark"
+                  id="card"
+                  style="margin-left: 30px"
+                >
+                  <h2>CARNET DE AFILIACIÓN ANIO</h2>
+                  <br />
+                  <p>CÉDULA:</p>
+                  <p>APELLIDOS: {{ Movies[i + 1].name }}</p>
+                  <p>NOMBRES:</p>
+                  <p>CLUB:</p>
+                  <br />
+                  <div class="row" style="width: 500px">
+                    <div class="col">
+                      <p class="bottom">_______________________ REGISTRADOR</p>
+                    </div>
+
+                    <div class="col">
+                      <p class="bottom">
+                        _______________________ FIRMA DEL JUGADOR
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col" *ngIf="i + 1 >= Movies.length">
+                <div
+                  class="border border-dark"
+                  id="card"
+                  style="margin-left: 30px"
+                ></div>
+              </div>
+              <div class="col">
+                <div
+                  class="border border-dark"
+                  id="card"
+                  style="margin-left: -26px"
+                >
+                  <h2>CARNET DE AFILIACIÓN ANIO</h2>
+                  <br />
+                  <p>CÉDULA:</p>
+                  <p>APELLIDOS: {{ Movies[i].name }}</p>
+                  <p>NOMBRES:</p>
+                  <p>CLUB:</p>
+                  <br />
+                  <div class="row" style="width: 500px">
+                    <div class="col">
+                      <p class="bottom">_______________________ REGISTRADOR</p>
+                    </div>
+
+                    <div class="col">
+                      <p class="bottom">
+                        _______________________ FIRMA DEL JUGADOR
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

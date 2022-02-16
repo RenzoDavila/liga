@@ -3,15 +3,34 @@
     <div class="col-lg-8 offset-lg-2">
       <div class="card">
         <div class="card-body text-center">
-          <span class="titulo">JUGADORES</span>
-          <button
-            class="btn btn-info float-end"
-            [routerLink]="['/crear-jugador']"
-          >
-            AGREGAR
-          </button>
+          <span class="titulo">CARNETS</span>
+          <div class="row mb-4 mt-4">
+            <div class="col-10">
+              <select
+                class="form-select form-select-lg mb-4"
+                id="slcJugador"
+                #slcJugador
+              >
+                <option
+                  *ngFor="let jugador of listJugadores"
+                  [ngValue]="jugador"
+                  [value]="jugador._id"
+                >
+                  {{ jugador.nombres }}
+                </option>
+              </select>
+            </div>
+            <div class="col-2">
+              <button
+                class="btn btn-info float-start"
+                (click)="sleccionado(this.slcJugador.value)"
+              >
+                AGREGAR
+              </button>
+            </div>
+          </div>
           <table
-            *ngIf="listJugadores.length > 0"
+            *ngIf="listJugadoresTabla.length > 0"
             class="table table-hover mt-4"
           >
             <thead>
@@ -24,7 +43,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let Jugador of listJugadores">
+              <tr *ngFor="let Jugador of listJugadoresTabla">
                 <th scope="row">{{ Jugador.dni }}</th>
                 <td>{{ Jugador.nombres }} {{ Jugador.apellidos }}</td>
                 <td>{{ Jugador.categoria }}</td>
@@ -42,11 +61,33 @@
               </tr>
             </tbody>
           </table>
+
+          <div class="row mb-4">
+            <div class="col-4">
+              <button
+                *ngIf="listJugadoresTabla.length > 0"
+                class="btn btn-danger float-end"
+                (click)="quitar()"
+              >
+                Quitar Ultimo Agregado
+              </button>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+              <button
+                *ngIf="listJugadoresTabla.length > 0"
+                class="btn btn-success"
+                (click)="ver()"
+              >
+                VER CARNET(S)
+              </button>
+            </div>
+          </div>
           <h5
-            *ngIf="listJugadores.length == 0"
-            style="text-align: start; margin-top: 10px"
+            *ngIf="listJugadoresTabla.length == 0"
+            style="text-align: center; margin-top: 10px"
           >
-            Actualmente no existen jugadores
+            Agrega Jugadores a la tabla
           </h5>
         </div>
       </div>
