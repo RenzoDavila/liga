@@ -48,7 +48,6 @@ export class EntCrearEditarComponent implements OnInit {
   }
 
   agregarEntrenador() {
-    console.log('estamos en agregarEntrenador');
     const ENTRENADOR: Entrenador = {
       dni: this.entrenadorForm.get('dni')?.value,
       club: this.entrenadorForm.get('club')?.value,

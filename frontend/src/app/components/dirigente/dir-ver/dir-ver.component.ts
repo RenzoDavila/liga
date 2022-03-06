@@ -17,14 +17,12 @@ export class DirVerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Estamos en ver dirigentes');
     this.obtenerDirigentes();
   }
 
   obtenerDirigentes() {
     this._dirigenteService.getDirigentes().subscribe(
       (data) => {
-        console.log('data', data);
         this.listDirigentes = data;
       },
       (error) => {

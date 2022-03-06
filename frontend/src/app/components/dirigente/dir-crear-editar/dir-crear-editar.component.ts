@@ -54,7 +54,6 @@ export class DirCrearEditarComponent implements OnInit {
   }
 
   agregarDirigente() {
-    console.log('estamos en agregarDirigente');
     const DIRIGENTE: Dirigente = {
       dni: this.dirigenteForm.get('dni')?.value,
       club: this.dirigenteForm.get('club')?.value,
@@ -64,10 +63,7 @@ export class DirCrearEditarComponent implements OnInit {
       telefono: this.dirigenteForm.get('telefono')?.value,
     };
 
-    console.log(DIRIGENTE);
-
     if (this.id !== null) {
-      console.log('editar dirigente', DIRIGENTE);
       this._dirigenteService.editDirigente(this.id, DIRIGENTE).subscribe(
         (data) => {
           this.toastr.success(
@@ -86,7 +82,6 @@ export class DirCrearEditarComponent implements OnInit {
         }
       );
     } else {
-      console.log('nuevo dirigente');
       this._dirigenteService.saveDirigente(DIRIGENTE).subscribe(
         (data) => {
           this.toastr.info(
@@ -112,7 +107,6 @@ export class DirCrearEditarComponent implements OnInit {
       this.titulo = 'Editar Dirigente';
       this._dirigenteService.getDirigente(this.id).subscribe(
         (data) => {
-          console.log('data', data);
           this.dirigenteForm.setValue({
             dni: data.dni,
             club: data.club,
@@ -135,7 +129,6 @@ export class DirCrearEditarComponent implements OnInit {
   obtenerCargos() {
     this._cargoService.getCargos().subscribe(
       (data) => {
-        console.log('data', data);
         this.listCargos = data;
       },
       (error) => {
@@ -147,7 +140,6 @@ export class DirCrearEditarComponent implements OnInit {
   obtenerClubes() {
     this._clubService.getClubes().subscribe(
       (data) => {
-        console.log('data', data);
         this.listClubes = data;
       },
       (error) => {

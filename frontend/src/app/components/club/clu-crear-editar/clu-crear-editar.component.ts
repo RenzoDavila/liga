@@ -34,16 +34,12 @@ export class CluCrearEditarComponent implements OnInit {
   }
 
   agregarClub() {
-    console.log('estamos en agregarClub');
     const CLUB: Club = {
       detalle: this.clubForm.get('detalle')?.value,
       fecha_grabacion: this.today,
     };
 
-    console.log(CLUB);
-
     if (this.id !== null) {
-      console.log('editar club', CLUB);
       this._clubService.editClub(this.id, CLUB).subscribe(
         (data) => {
           this.toastr.success(
@@ -60,7 +56,6 @@ export class CluCrearEditarComponent implements OnInit {
         }
       );
     } else {
-      console.log('nuevo club');
       this._clubService.saveClub(CLUB).subscribe(
         (data) => {
           this.toastr.info(
@@ -84,7 +79,6 @@ export class CluCrearEditarComponent implements OnInit {
       this.titulo = 'Editar Club';
       this._clubService.getClub(this.id).subscribe(
         (data) => {
-          console.log('data', data);
           this.clubForm.setValue({
             detalle: data.detalle,
           });

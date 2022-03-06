@@ -17,14 +17,12 @@ export class CarVerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Estamos en ver cargos');
     this.obtenerCargos();
   }
 
   obtenerCargos() {
     this._cargoService.getCargos().subscribe(
       (data) => {
-        console.log('data', data);
         this.listCargos = data;
         this.listCargos.forEach((cargo) => {
           cargo.fecha_grabacion_string = this.formatDate(cargo.fecha_grabacion);

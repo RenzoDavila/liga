@@ -17,14 +17,12 @@ export class CluVerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Estamos en ver clubes');
     this.obtenerClubes();
   }
 
   obtenerClubes() {
     this._clubService.getClubes().subscribe(
       (data) => {
-        console.log('data', data);
         this.listClubes = data;
         this.listClubes.forEach((club) => {
           club.fecha_grabacion_string = this.formatDate(club.fecha_grabacion);

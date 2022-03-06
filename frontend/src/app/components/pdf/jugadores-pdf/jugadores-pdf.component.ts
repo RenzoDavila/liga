@@ -20,14 +20,12 @@ export class JugadoresPdfComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Estamos en ver jugadores');
     this.obtenerJugadores();
   }
 
   obtenerJugadores() {
     this._jugadorService.getJugadores().subscribe(
       (data) => {
-        console.log('ashkjasdfjahsjf', data);
         this.listJugadores = data;
       },
       (error) => {
@@ -35,18 +33,19 @@ export class JugadoresPdfComponent implements OnInit {
       }
     );
   }
-  sleccionado(jugador: any) {
-    console.log('dni', jugador);
-    this._jugadorService.getJugador(jugador).subscribe(
-      (data) => {
-        console.log('data', data);
-        this.listJugadoresTabla.push(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    console.log('this.listJugadoresTabla', this.listJugadoresTabla);
+  seleccionado(jugador: any) {
+    if (this.listJugadoresTabla.length > 9) {
+      this.toastr.warning('No puede agregar más de 10 carnets por hoja!');
+    } else {
+      this._jugadorService.getJugador(jugador).subscribe(
+        (data) => {
+          this.listJugadoresTabla.push(data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   quitar() {

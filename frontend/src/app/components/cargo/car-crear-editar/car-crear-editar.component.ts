@@ -34,16 +34,12 @@ export class CarCrearEditarComponent implements OnInit {
   }
 
   agregarCargo() {
-    console.log('estamos en agregarCargo');
     const CARGO: Cargo = {
       detalle: this.cargoForm.get('detalle')?.value,
       fecha_grabacion: this.today,
     };
 
-    console.log(CARGO);
-
     if (this.id !== null) {
-      console.log('editar cargo', CARGO);
       this._cargoService.editCargo(this.id, CARGO).subscribe(
         (data) => {
           this.toastr.success(
@@ -60,7 +56,6 @@ export class CarCrearEditarComponent implements OnInit {
         }
       );
     } else {
-      console.log('nuevo cargo');
       this._cargoService.saveCargo(CARGO).subscribe(
         (data) => {
           this.toastr.info(
@@ -84,7 +79,6 @@ export class CarCrearEditarComponent implements OnInit {
       this.titulo = 'Editar Cargo';
       this._cargoService.getCargo(this.id).subscribe(
         (data) => {
-          console.log('data', data);
           this.cargoForm.setValue({
             detalle: data.detalle,
           });

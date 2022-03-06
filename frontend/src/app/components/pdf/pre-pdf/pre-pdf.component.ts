@@ -15,42 +15,13 @@ export class PrePdfComponent implements OnInit {
   listJugadores: Jugador[] = [];
   currentTime = new Date();
   year = this.currentTime.getFullYear();
-  Movies: any[] = [
-    {
-      name: 'Avengers: Endgame',
-    },
-    {
-      name: 'Good Boys',
-    },
-    {
-      name: 'Playmobil: The Movie',
-    },
-    {
-      name: 'Aquarela',
-    },
-    {
-      name: 'Aladdin',
-    },
-    {
-      name: 'Downton Abbey',
-    },
-    {
-      name: 'Mi pelicula mia de mi',
-    },
-    {
-      name: 'ASCADACS',
-    },
-    {
-      name: 'procedo a XD',
-    },
-  ];
   constructor(private _jugadorService: JugadorService, private router: Router) {
     if (this.data) {
       console.log('tenemos data', this.data);
       this.listJugadores = this.data;
       console.log('tenemos listJugadores', this.listJugadores);
     } else {
-      // this.router.navigateByUrl('/jugadores-pdf');
+      this.router.navigateByUrl('/jugadores-pdf');
     }
   }
 
@@ -65,9 +36,9 @@ export class PrePdfComponent implements OnInit {
   }
 
   ultimoObjeto(numero: number) {
-    let ultimo = this.Movies.length - 1;
+    let ultimo = this.listJugadores.length - 1;
     if (numero === ultimo) {
-      if (this.parImpar(this.Movies.length)) {
+      if (this.parImpar(this.listJugadores.length)) {
         return false;
       } else {
         return true;
@@ -87,8 +58,38 @@ export class PrePdfComponent implements OnInit {
     var newImg = '';
     var elementDel = document.getElementById('carnet-delantero');
     var element = document.getElementById('carnet-trasero');
+    var fila: number = 42;
 
-    console.log('el ancho de la pagina es ', pageWidth);
+    switch (this.listJugadores.length) {
+      case 1:
+      case 2:
+        fila = fila * 1;
+        break;
+      case 3:
+      case 4:
+        fila = fila * 2;
+        break;
+      case 5:
+      case 6:
+        fila = fila * 3;
+        break;
+      case 5:
+      case 6:
+        fila = fila * 4;
+        break;
+      case 7:
+      case 8:
+        fila = fila * 5;
+        break;
+      case 9:
+      case 10:
+        fila = fila * 6;
+        break;
+      case 11:
+      case 12:
+        fila = fila * 7;
+        break;
+    }
 
     if (elementDel != null) {
       html2canvas(elementDel).then((canvasDel) => {
@@ -103,8 +104,7 @@ export class PrePdfComponent implements OnInit {
         newImg = canvas.toDataURL('image/png');
 
         setTimeout(function () {
-          // doc.addImage(newImgDel, 19.82, 6, 170, 50);
-          doc.addImage(newImgDel, 19.82, 6, 170, 250);
+          doc.addImage(newImgDel, 19.82, 6, 170, fila);
         }, 2000);
 
         var y = 500;
@@ -117,8 +117,7 @@ export class PrePdfComponent implements OnInit {
         }
 
         setTimeout(function () {
-          // doc.addImage(newImg, 19.82, 6, 170, 50);
-          doc.addImage(newImg, 19.82, 6, 170, 250);
+          doc.addImage(newImg, 19.82, 6, 170, fila);
         }, 3000);
 
         setTimeout(function () {
