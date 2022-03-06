@@ -23,7 +23,7 @@ export class CarCrearEditarComponent implements OnInit {
     private aRoute: ActivatedRoute
   ) {
     this.cargoForm = this.fb.group({
-      detalle: ['', Validators.required],
+      cargo: ['', Validators.required],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id');
   }
@@ -35,7 +35,7 @@ export class CarCrearEditarComponent implements OnInit {
 
   agregarCargo() {
     const CARGO: Cargo = {
-      detalle: this.cargoForm.get('detalle')?.value,
+      detalle: this.cargoForm.get('cargo')?.value,
       fecha_grabacion: this.today,
     };
 
@@ -43,8 +43,8 @@ export class CarCrearEditarComponent implements OnInit {
       this._cargoService.editCargo(this.id, CARGO).subscribe(
         (data) => {
           this.toastr.success(
-            'EL cargo ' +
-              this.cargoForm.get('detalle')?.value +
+            'El cargo ' +
+              this.cargoForm.get('cargo')?.value +
               ' fue actualizado correctamente!',
             'Cargo actualizado!'
           );
@@ -58,9 +58,9 @@ export class CarCrearEditarComponent implements OnInit {
     } else {
       this._cargoService.saveCargo(CARGO).subscribe(
         (data) => {
-          this.toastr.info(
-            'EL cargo ' +
-              this.cargoForm.get('detalle')?.value +
+          this.toastr.success(
+            'El cargo ' +
+              this.cargoForm.get('cargo')?.value +
               ' fue agregado correctamente!',
             'Cargo agregado!'
           );
@@ -80,7 +80,7 @@ export class CarCrearEditarComponent implements OnInit {
       this._cargoService.getCargo(this.id).subscribe(
         (data) => {
           this.cargoForm.setValue({
-            detalle: data.detalle,
+            cargo: data.detalle,
           });
         },
         (error) => {

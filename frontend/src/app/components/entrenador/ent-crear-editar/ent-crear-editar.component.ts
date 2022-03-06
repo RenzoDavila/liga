@@ -64,7 +64,7 @@ export class EntCrearEditarComponent implements OnInit {
       this._entrenadorService.editEntrenador(this.id, ENTRENADOR).subscribe(
         (data) => {
           this.toastr.success(
-            'EL entrenador ' +
+            'El entrenador ' +
               this.entrenadorForm.get('nombres')?.value +
               ' ' +
               this.entrenadorForm.get('apellidos')?.value +
@@ -82,8 +82,8 @@ export class EntCrearEditarComponent implements OnInit {
       console.log('nuevo entrenador');
       this._entrenadorService.saveEntrenador(ENTRENADOR).subscribe(
         (data) => {
-          this.toastr.info(
-            'EL entrenador ' +
+          this.toastr.success(
+            'El entrenador ' +
               this.entrenadorForm.get('nombres')?.value +
               ' ' +
               this.entrenadorForm.get('apellidos')?.value +

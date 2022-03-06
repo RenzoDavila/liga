@@ -9,15 +9,15 @@
               <div class="col-8">
                 <input
                   type="text"
-                  formControlName="detalle"
+                  formControlName="club"
                   class="form-control form-control-lg"
-                  placeholder="DETALLE"
+                  placeholder="CLUB"
                 />
                 <div
                   class="text-danger"
                   *ngIf="
-                    clubForm.get('detalle')?.hasError('required') &&
-                    clubForm.get('detalle')?.touched
+                    clubForm.get('club')?.hasError('required') &&
+                    clubForm.get('club')?.touched
                   "
                 >
                   <span>Este campo es <strong>obligatorio</strong></span>

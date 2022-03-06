@@ -78,7 +78,7 @@ export class JugCrearEditarComponent implements OnInit {
       this._jugadorService.editJugador(this.id, JUGADOR).subscribe(
         (data) => {
           this.toastr.success(
-            'EL jugador ' +
+            'El jugador ' +
               this.jugadorForm.get('nombres')?.value +
               ' ' +
               this.jugadorForm.get('apellidos')?.value +
@@ -96,8 +96,8 @@ export class JugCrearEditarComponent implements OnInit {
       console.log('nuevo jugador');
       this._jugadorService.saveJugador(JUGADOR).subscribe(
         (data) => {
-          this.toastr.info(
-            'EL jugador ' +
+          this.toastr.success(
+            'El jugador ' +
               this.jugadorForm.get('nombres')?.value +
               ' ' +
               this.jugadorForm.get('apellidos')?.value +
@@ -170,7 +170,7 @@ export class JugCrearEditarComponent implements OnInit {
     if (val != '') {
       this.slcClub = false;
       if (val == this.clubtemp) {
-        console.log('son iguales conserva el club inicial');
+        console.log('son iguales conserva El club inicial');
       }
     }
   }

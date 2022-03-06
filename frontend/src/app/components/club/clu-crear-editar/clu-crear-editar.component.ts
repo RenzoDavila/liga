@@ -23,7 +23,7 @@ export class CluCrearEditarComponent implements OnInit {
     private aRoute: ActivatedRoute
   ) {
     this.clubForm = this.fb.group({
-      detalle: ['', Validators.required],
+      club: ['', Validators.required],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id');
   }
@@ -35,7 +35,7 @@ export class CluCrearEditarComponent implements OnInit {
 
   agregarClub() {
     const CLUB: Club = {
-      detalle: this.clubForm.get('detalle')?.value,
+      detalle: this.clubForm.get('club')?.value,
       fecha_grabacion: this.today,
     };
 
@@ -43,8 +43,8 @@ export class CluCrearEditarComponent implements OnInit {
       this._clubService.editClub(this.id, CLUB).subscribe(
         (data) => {
           this.toastr.success(
-            'EL club ' +
-              this.clubForm.get('detalle')?.value +
+            'El club ' +
+              this.clubForm.get('club')?.value +
               ' fue actualizado correctamente!',
             'Club actualizado!'
           );
@@ -58,9 +58,9 @@ export class CluCrearEditarComponent implements OnInit {
     } else {
       this._clubService.saveClub(CLUB).subscribe(
         (data) => {
-          this.toastr.info(
-            'EL club ' +
-              this.clubForm.get('detalle')?.value +
+          this.toastr.success(
+            'El club ' +
+              this.clubForm.get('club')?.value +
               ' fue agregado correctamente!',
             'Club agregado!'
           );
@@ -80,7 +80,7 @@ export class CluCrearEditarComponent implements OnInit {
       this._clubService.getClub(this.id).subscribe(
         (data) => {
           this.clubForm.setValue({
-            detalle: data.detalle,
+            club: data.detalle,
           });
         },
         (error) => {

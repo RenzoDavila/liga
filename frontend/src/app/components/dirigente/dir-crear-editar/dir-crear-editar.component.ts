@@ -67,7 +67,7 @@ export class DirCrearEditarComponent implements OnInit {
       this._dirigenteService.editDirigente(this.id, DIRIGENTE).subscribe(
         (data) => {
           this.toastr.success(
-            'EL dirigente ' +
+            'El dirigente ' +
               this.dirigenteForm.get('nombres')?.value +
               ' ' +
               this.dirigenteForm.get('apellidos')?.value +
@@ -84,8 +84,8 @@ export class DirCrearEditarComponent implements OnInit {
     } else {
       this._dirigenteService.saveDirigente(DIRIGENTE).subscribe(
         (data) => {
-          this.toastr.info(
-            'EL dirigente ' +
+          this.toastr.success(
+            'El dirigente ' +
               this.dirigenteForm.get('nombres')?.value +
               ' ' +
               this.dirigenteForm.get('apellidos')?.value +
