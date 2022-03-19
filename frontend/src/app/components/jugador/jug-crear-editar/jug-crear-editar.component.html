@@ -213,50 +213,39 @@
               </div>
             </div>
             <div class="row mb-4">
-              <div class="col-4">
-                <label for="club">CLUB</label>
-                <select
-                  id="club"
-                  class="form-select form-select-lg mb-4"
-                  formControlName="club"
-                  (change)="slcClubChange()"
-                >
-                  <option disabled [ngValue]="">Seleccione un club</option>
-                  <option
-                    *ngFor="let club of listClubes"
-                    [ngValue]="club.detalle"
-                  >
-                    {{ club.detalle }}
-                  </option>
-                </select>
-                <div
-                  class="text-danger"
-                  *ngIf="slcClub && jugadorForm.get('club')?.touched"
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
-                </div>
-              </div>
-              <div class="col">
-                <label *ngIf="this.id !== null" for="club_inicial"
-                  >CLUB INICIAL</label
-                >
+              <!-- <div class="col-4">
+                <label for="club_actual">CLUB ACTUAL</label>
                 <input
-                  id="club_inicial"
+                  id="club_actual"
                   type="text"
-                  formControlName="club_inicial"
+                  formControlName="club_actual"
                   class="form-control form-control-lg"
-                  placeholder="Club inicial"
-                  *ngIf="this.id !== null"
+                  placeholder="Club Actual"
                   readonly
                 />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('club_inicial')?.hasError('required') &&
-                    jugadorForm.get('club_inicial')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
+              </div> -->
+              <div class="col-4">
+                <label for="club_actual">CLUB ACTUAL</label>
+                <div class="form-control form-control-lg ng-autocomplete">
+                  <ng-autocomplete
+                    [data]="listClubes"
+                    id="club_actual"
+                    formControlName="club_actual"
+                    [searchKeyword]="keywordClub"
+                    placeholder="Seleccione un club"
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate"
+                    (selected)="selectEvent($event)"
+                  >
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.detalle"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
                 </div>
               </div>
             </div>

@@ -40,8 +40,7 @@ exports.actualizarJugador = async (req, res) => {
       dni,
       libro,
       folio,
-      club_inicial,
-      club_actual,
+      club,
       apellidos,
       nombres,
       fecha_nacimiento,
@@ -60,8 +59,7 @@ exports.actualizarJugador = async (req, res) => {
     jugador.dni = dni;
     jugador.libro = libro;
     jugador.folio = folio;
-    jugador.club_inicial = club_inicial;
-    jugador.club_actual = club_actual;
+    jugador.club = club;
     jugador.apellidos = apellidos;
     jugador.nombres = nombres;
     jugador.fecha_nacimiento = fecha_nacimiento;

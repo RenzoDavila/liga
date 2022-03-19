@@ -3,8 +3,7 @@ export class Jugador {
   dni: string;
   libro: string;
   folio: string;
-  club_inicial: string;
-  club_actual: string;
+  club: any;
   apellidos: string;
   nombres: string;
   fecha_nacimiento: Date;
@@ -17,8 +16,7 @@ export class Jugador {
     dni: string,
     libro: string,
     folio: string,
-    club_inicial: string,
-    club_actual: string,
+    club: [detalle: any],
     apellidos: string,
     nombres: string,
     fecha_nacimiento: Date,
@@ -30,8 +28,7 @@ export class Jugador {
     this.dni = dni;
     this.libro = libro;
     this.folio = folio;
-    this.club_inicial = club_inicial;
-    this.club_actual = club_actual;
+    this.club = club;
     this.apellidos = apellidos;
     this.nombres = nombres;
     this.fecha_nacimiento = fecha_nacimiento;

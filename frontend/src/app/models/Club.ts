@@ -1,12 +1,12 @@
 export class Club {
-  _id?: number;
-  detalle: string;
-  fecha_grabacion: Date;
+  _id?: string;
+  detalle: any;
+  fecha_grabacion: any;
   fecha_grabacion_string?: string;
 
   constructor(
     detalle: string,
-    fecha_grabacion: Date,
+    fecha_grabacion: any,
     fecha_grabacion_string: string
   ) {
     this.detalle = detalle;

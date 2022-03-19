@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -27,6 +27,7 @@ import { CluVerComponent } from './components/club/clu-ver/clu-ver.component';
 import { DatePipe } from '@angular/common';
 import { PrePdfComponent } from './components/pdf/pre-pdf/pre-pdf.component';
 import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-pdf.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -50,12 +51,14 @@ import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
     Ng2SearchPipeModule,
     Ng2OrderModule,
     NgxPaginationModule,
+    AutocompleteLibModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

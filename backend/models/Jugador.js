@@ -13,14 +13,12 @@ const JugadorSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  club_inicial: {
-    type: String,
-    required: true,
-  },
-  club_actual: {
-    type: String,
-    required: true,
-  },
+  club: [
+    {
+      detalle: { type: String, required: true },
+      fecha_grabacion: { type: Date, default: Date.now() },
+    },
+  ],
   apellidos: {
     type: String,
     required: true,

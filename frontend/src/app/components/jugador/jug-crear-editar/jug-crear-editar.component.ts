@@ -6,7 +6,6 @@ import { JugadorService } from 'src/app/services/jugador/jugador.service';
 import { Jugador } from 'src/app/models/Jugador';
 import { Club } from 'src/app/models/Club';
 import { ClubService } from 'src/app/services/club/club.service';
-
 @Component({
   selector: 'app-jug-crear-editar',
   templateUrl: './jug-crear-editar.component.html',
@@ -19,7 +18,25 @@ export class JugCrearEditarComponent implements OnInit {
   slcClub: boolean = true;
   cambioClub: boolean = false;
   listClubes: Club[] = [];
-  clubtemp: string | undefined;
+  jugadorClubes: Club[] = [];
+  jugadorClubesSend: Club[] = [];
+  Jugador: Jugador[] = [];
+  clubtemp: string | null | undefined;
+  displayStyle = 'none';
+
+  keywordClub = 'detalle';
+
+  selectEvent(item: any) {
+    this.clubtemp = item._id;
+    // do something with selected item
+  }
+
+  openPopup() {
+    this.displayStyle = 'block';
+  }
+  closePopup() {
+    this.displayStyle = 'none';
+  }
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -38,24 +55,65 @@ export class JugCrearEditarComponent implements OnInit {
       fecha_nacimiento: ['', Validators.required],
       ciudad_nacimiento: ['', Validators.required],
       nacionalidad: ['', Validators.required],
-      club_inicial: ['', Validators.required],
-      club: ['Seleccione un club', Validators.required],
+      club: [],
+      club_actual: ['', Validators.required],
       fecha_inscripcion: ['', Validators.required],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    this.esEditar();
     this.obtenerClubes();
+    this.getCLubes();
+    let dateTime = new Date();
+    console.log(dateTime.toISOString());
+
+    this.jugadorForm.setValue({
+      dni: '',
+      libro: '',
+      folio: '',
+      nombres: '',
+      apellidos: '',
+      categoria: '',
+      fecha_nacimiento: '',
+      ciudad_nacimiento: '',
+      nacionalidad: '',
+      club: '',
+      club_actual: '',
+      fecha_inscripcion: this.formatDate(dateTime.toISOString()),
+    });
+    setTimeout(() => {
+      this.esEditar();
+    }, 2000);
+  }
+
+  getCLubes() {
+    if (this.id !== null) {
+      this._jugadorService.getJugador(this.id).subscribe(
+        (data) => {
+          this.jugadorClubesSend = data.club;
+          console.log('this.jugadorClubesSend', this.jugadorClubesSend);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   agregarJugador() {
-    console.log('estamos en agregarJugador');
-    let iniclub = this.jugadorForm.get('club')?.value;
-    if (this.id !== null) {
-      iniclub = this.jugadorForm.get('club_inicial')?.value;
+    console.log('this.clubtemp', this.clubtemp);
+
+    if (this.clubtemp != null || this.clubtemp != undefined) {
+      let dateTime = new Date();
+      this.jugadorClubesSend.unshift({
+        fecha_grabacion: dateTime.toISOString(),
+        detalle: this.clubtemp,
+      });
     }
+
+    console.log('this.jugadorClubesSend', this.jugadorClubesSend);
+
     const JUGADOR: Jugador = {
       dni: this.jugadorForm.get('dni')?.value,
       libro: this.jugadorForm.get('libro')?.value,
@@ -66,12 +124,9 @@ export class JugCrearEditarComponent implements OnInit {
       fecha_nacimiento: this.jugadorForm.get('fecha_nacimiento')?.value,
       ciudad_nacimiento: this.jugadorForm.get('ciudad_nacimiento')?.value,
       nacionalidad: this.jugadorForm.get('nacionalidad')?.value,
-      club_inicial: iniclub,
-      club_actual: this.jugadorForm.get('club')?.value,
+      club: this.jugadorClubesSend,
       fecha_inscripcion: this.jugadorForm.get('fecha_inscripcion')?.value,
     };
-
-    console.log(JUGADOR);
 
     if (this.id !== null) {
       console.log('editar jugador', JUGADOR);
@@ -93,7 +148,7 @@ export class JugCrearEditarComponent implements OnInit {
         }
       );
     } else {
-      console.log('nuevo jugador');
+      console.log('nuevo jugador', JUGADOR);
       this._jugadorService.saveJugador(JUGADOR).subscribe(
         (data) => {
           this.toastr.success(
@@ -119,8 +174,19 @@ export class JugCrearEditarComponent implements OnInit {
       this.titulo = 'Editar Jugador';
       this._jugadorService.getJugador(this.id).subscribe(
         (data) => {
-          this.clubtemp = data.club_actual;
-          console.log('clubtemp', this.clubtemp);
+          let clubDetalle = data.club[0].detalle;
+          this.jugadorClubes = data.club;
+          this.jugadorClubes.forEach(
+            (element: { detalle: string }) =>
+              (element.detalle = String(
+                this.listClubes.find((e) => e._id === element.detalle)?.detalle
+              ))
+          );
+          console.log('data.fecha_nacimiento', data.fecha_nacimiento);
+          console.log(
+            'this.formatDate(data.fecha_nacimiento)',
+            this.formatDate(data.fecha_nacimiento)
+          );
           this.jugadorForm.setValue({
             dni: data.dni,
             libro: data.libro,
@@ -131,10 +197,13 @@ export class JugCrearEditarComponent implements OnInit {
             fecha_nacimiento: this.formatDate(data.fecha_nacimiento),
             ciudad_nacimiento: data.ciudad_nacimiento,
             nacionalidad: data.nacionalidad,
-            club_inicial: data.club_inicial,
-            club: data.club_actual,
+            club: 0,
+            club_actual: this.listClubes.find((e) => e._id === clubDetalle)
+              ?.detalle,
             fecha_inscripcion: this.formatDate(data.fecha_inscripcion),
           });
+
+          this.jugadorClubes = data.club;
         },
         (error) => {
           console.log(error);
@@ -143,26 +212,34 @@ export class JugCrearEditarComponent implements OnInit {
     }
   }
 
-  private formatDate(date: any) {
-    const d = new Date(date);
-    let month = '' + (d.getMonth() + 1);
-    let day = '' + d.getDate();
-    const year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
+  formatDate(date: any) {
+    const split1 = String(date).split('T');
+    const split2 = split1[0].split('-');
+    const day = split2[2];
+    const month = split2[1];
+    const year = split2[0];
+    return year + '-' + month + '-' + day;
+  }
+
+  reFormatDate(date: any) {
+    const split1 = String(date).split('T');
+    const split2 = split1[0].split('-');
+    const day = split2[2];
+    const month = split2[1];
+    const year = split2[0];
+    return day + '-' + month + '-' + year;
   }
 
   obtenerClubes() {
     this._clubService.getClubes().subscribe(
       (data) => {
-        console.log('data clubes', data);
         this.listClubes = data;
       },
       (error) => {
         console.log(error);
       }
     );
+    return true;
   }
 
   slcClubChange() {
@@ -170,7 +247,7 @@ export class JugCrearEditarComponent implements OnInit {
     if (val != '') {
       this.slcClub = false;
       if (val == this.clubtemp) {
-        console.log('son iguales conserva El club inicial');
+        console.log('son iguales conserva el club inicial');
       }
     }
   }
