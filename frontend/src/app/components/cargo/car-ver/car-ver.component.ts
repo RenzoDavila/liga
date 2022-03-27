@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Cargo } from 'src/app/models/Cargo';
 import { CargoService } from 'src/app/services/cargo/cargo.service';
+import { Fecha } from 'src/app/functions/fecha/fecha';
 
 @Component({
   selector: 'app-car-ver',
@@ -24,9 +25,6 @@ export class CarVerComponent implements OnInit {
     this._cargoService.getCargos().subscribe(
       (data) => {
         this.listCargos = data;
-        this.listCargos.forEach((cargo) => {
-          cargo.fecha_grabacion_string = this.formatDate(cargo.fecha_grabacion);
-        });
       },
       (error) => {
         console.log(error);
@@ -46,13 +44,7 @@ export class CarVerComponent implements OnInit {
     );
   }
 
-  private formatDate(date: any) {
-    const d = new Date(date);
-    let month = '' + (d.getMonth() + 1);
-    let day = '' + d.getDate();
-    const year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
+  formatDate_yyyymmdd(date: any) {
+    return Fecha.formatDate_yyyymmdd(date);
   }
 }

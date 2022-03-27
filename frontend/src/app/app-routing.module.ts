@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
 import { CarCrearEditarComponent } from './components/cargo/car-crear-editar/car-crear-editar.component';
 import { CarVerComponent } from './components/cargo/car-ver/car-ver.component';
+import { CatCrearEditarComponent } from './components/categoria/cat-crear-editar/cat-crear-editar.component';
+import { CatVerComponent } from './components/categoria/cat-ver/cat-ver.component';
 import { CluCrearEditarComponent } from './components/club/clu-crear-editar/clu-crear-editar.component';
 import { CluVerComponent } from './components/club/clu-ver/clu-ver.component';
 import { DirCrearEditarComponent } from './components/dirigente/dir-crear-editar/dir-crear-editar.component';
@@ -31,6 +33,9 @@ const routes: Routes = [
   { path: 'cargo', component: CarVerComponent },
   { path: 'crear-cargo', component: CarCrearEditarComponent },
   { path: 'editar-cargo/:id', component: CarCrearEditarComponent },
+  { path: 'categoria', component: CatVerComponent },
+  { path: 'crear-categoria', component: CatCrearEditarComponent },
+  { path: 'editar-categoria/:id', component: CatCrearEditarComponent },
   { path: 'vizualizacion-pdf', component: PrePdfComponent },
   { path: 'jugadores-pdf', component: JugadoresPdfComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },

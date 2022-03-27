@@ -18,7 +18,7 @@
             <tbody>
               <tr *ngFor="let Club of listClubes">
                 <th scope="row">{{ Club.detalle }}</th>
-                <td>{{ Club.fecha_grabacion_string }}</td>
+                <td>{{ formatDate_yyyymmdd(Club.fecha_grabacion) }}</td>
                 <td>
                   <i
                     [routerLink]="['/editar-club', Club._id]"

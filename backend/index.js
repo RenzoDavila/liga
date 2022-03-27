@@ -18,6 +18,7 @@ app.use("/api/clubes", require("./routes/club"));
 app.use("/api/dirigentes", require("./routes/dirigente"));
 app.use("/api/entrenadores", require("./routes/entrenador"));
 app.use("/api/jugadores", require("./routes/jugador"));
+app.use("/api/categorias", require("./routes/categoria"));
 
 app.listen(4000, () => {
   console.log("Corriendo");

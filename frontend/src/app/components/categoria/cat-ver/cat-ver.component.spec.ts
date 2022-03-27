@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CluCrearEditarComponent } from './clu-crear-editar.component';
+import { CatVerComponent } from './cat-ver.component';
 
-describe('CluCrearEditarComponent', () => {
-  let component: CluCrearEditarComponent;
-  let fixture: ComponentFixture<CluCrearEditarComponent>;
+describe('CatVerComponent', () => {
+  let component: CatVerComponent;
+  let fixture: ComponentFixture<CatVerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CluCrearEditarComponent ]
+      declarations: [ CatVerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CluCrearEditarComponent);
+    fixture = TestBed.createComponent(CatVerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

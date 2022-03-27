@@ -6,6 +6,7 @@ import { JugadorService } from 'src/app/services/jugador/jugador.service';
 import { Jugador } from 'src/app/models/Jugador';
 import { Club } from 'src/app/models/Club';
 import { ClubService } from 'src/app/services/club/club.service';
+import { Fecha } from 'src/app/functions/fecha/fecha';
 @Component({
   selector: 'app-jug-crear-editar',
   templateUrl: './jug-crear-editar.component.html',
@@ -80,7 +81,7 @@ export class JugCrearEditarComponent implements OnInit {
       nacionalidad: '',
       club: '',
       club_actual: '',
-      fecha_inscripcion: this.formatDate(dateTime.toISOString()),
+      fecha_inscripcion: Fecha.formatDate_yyyymmdd(dateTime.toISOString()),
     });
     setTimeout(() => {
       this.esEditar();
@@ -182,11 +183,6 @@ export class JugCrearEditarComponent implements OnInit {
                 this.listClubes.find((e) => e._id === element.detalle)?.detalle
               ))
           );
-          console.log('data.fecha_nacimiento', data.fecha_nacimiento);
-          console.log(
-            'this.formatDate(data.fecha_nacimiento)',
-            this.formatDate(data.fecha_nacimiento)
-          );
           this.jugadorForm.setValue({
             dni: data.dni,
             libro: data.libro,
@@ -194,13 +190,15 @@ export class JugCrearEditarComponent implements OnInit {
             nombres: data.nombres,
             apellidos: data.apellidos,
             categoria: data.categoria,
-            fecha_nacimiento: this.formatDate(data.fecha_nacimiento),
+            fecha_nacimiento: Fecha.formatDate_yyyymmdd(data.fecha_nacimiento),
             ciudad_nacimiento: data.ciudad_nacimiento,
             nacionalidad: data.nacionalidad,
             club: 0,
             club_actual: this.listClubes.find((e) => e._id === clubDetalle)
               ?.detalle,
-            fecha_inscripcion: this.formatDate(data.fecha_inscripcion),
+            fecha_inscripcion: Fecha.formatDate_yyyymmdd(
+              data.fecha_inscripcion
+            ),
           });
 
           this.jugadorClubes = data.club;
@@ -210,24 +208,6 @@ export class JugCrearEditarComponent implements OnInit {
         }
       );
     }
-  }
-
-  formatDate(date: any) {
-    const split1 = String(date).split('T');
-    const split2 = split1[0].split('-');
-    const day = split2[2];
-    const month = split2[1];
-    const year = split2[0];
-    return year + '-' + month + '-' + day;
-  }
-
-  reFormatDate(date: any) {
-    const split1 = String(date).split('T');
-    const split2 = split1[0].split('-');
-    const day = split2[2];
-    const month = split2[1];
-    const year = split2[0];
-    return day + '-' + month + '-' + year;
   }
 
   obtenerClubes() {

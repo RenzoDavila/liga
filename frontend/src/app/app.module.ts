@@ -28,6 +28,8 @@ import { DatePipe } from '@angular/common';
 import { PrePdfComponent } from './components/pdf/pre-pdf/pre-pdf.component';
 import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-pdf.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { CatVerComponent } from './components/categoria/cat-ver/cat-ver.component';
+import { CatCrearEditarComponent } from './components/categoria/cat-crear-editar/cat-crear-editar.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     CluVerComponent,
     PrePdfComponent,
     JugadoresPdfComponent,
+    CatVerComponent,
+    CatCrearEditarComponent,
   ],
   imports: [
     BrowserModule,
