@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const JugadorSchema = mongoose.Schema({
+  cedula: {
+    type: String,
+    required: true,
+  },
   dni: {
     type: String,
     required: true,

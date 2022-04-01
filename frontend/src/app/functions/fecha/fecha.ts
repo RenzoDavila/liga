@@ -16,4 +16,11 @@ export class Fecha {
     const year = split2[0];
     return day + '-' + month + '-' + year;
   }
+
+  static formatDate_yyyy(date: any) {
+    const split1 = String(date).split('T');
+    const split2 = split1[0].split('-');
+    const year = split2[0];
+    return year;
+  }
 }

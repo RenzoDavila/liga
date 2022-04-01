@@ -10,14 +10,33 @@
             (ngSubmit)="agregarJugador()"
           >
             <div class="row mb-4">
-              <div class="col-2">
-                <label for="dni">DNI</label>
+              <div class="col-3">
+                <label for="cedula">CEDULA</label>
+                <input
+                  id="cedula"
+                  type="text"
+                  formControlName="cedula"
+                  class="form-control form-control-lg"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('cedula')?.hasError('required') &&
+                    jugadorForm.get('cedula')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <label for="dni">DOCUMENTO</label>
                 <input
                   id="dni"
                   type="text"
                   formControlName="dni"
                   class="form-control form-control-lg"
-                  placeholder="DNI"
                   (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
                 />
                 <div
@@ -30,86 +49,7 @@
                   <span>Este campo es <strong>obligatorio</strong></span>
                 </div>
               </div>
-              <div class="col">
-                <label for="nombres">NOMBRES</label>
-                <input
-                  id="nombres"
-                  type="text"
-                  formControlName="nombres"
-                  class="form-control form-control-lg"
-                  placeholder="Nombres"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('nombres')?.hasError('required') &&
-                    jugadorForm.get('nombres')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
-                </div>
-              </div>
-              <div class="col">
-                <label for="apellidos">APELLIDOS</label>
-                <input
-                  id="apellidos"
-                  type="text"
-                  formControlName="apellidos"
-                  class="form-control form-control-lg"
-                  placeholder="Apellidos"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('apellidos')?.hasError('required') &&
-                    jugadorForm.get('apellidos')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-4">
-              <div class="col-2">
-                <label for="libro">LIBRO</label>
-                <input
-                  id="libro"
-                  type="number"
-                  formControlName="libro"
-                  class="form-control form-control-lg"
-                  placeholder="Libro"
-                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('libro')?.hasError('required') &&
-                    jugadorForm.get('libro')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
-                </div>
-              </div>
-              <div class="col-2">
-                <label for="folio">FOLIO</label>
-                <input
-                  id="folio"
-                  type="number"
-                  formControlName="folio"
-                  class="form-control form-control-lg"
-                  placeholder="Folio"
-                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
-                    jugadorForm.get('folio')?.hasError('required') &&
-                    jugadorForm.get('folio')?.touched
-                  "
-                >
-                  <span>Este campo es <strong>obligatorio</strong></span>
-                </div>
-              </div>
+
               <div class="col-3">
                 <label for="fecha_nacimiento">FECHA DE NAC.</label>
                 <input
@@ -118,6 +58,7 @@
                   formControlName="fecha_nacimiento"
                   class="form-control form-control-lg"
                   placeholder="dd/mm/aaaa"
+                  (change)="changeCategoria()"
                 />
                 <div
                   class="text-danger"
@@ -137,6 +78,7 @@
                   formControlName="categoria"
                   class="form-control form-control-lg"
                   placeholder="Categoria"
+                  readonly
                 />
                 <div
                   class="text-danger"
@@ -146,6 +88,89 @@
                   "
                 >
                   <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <label for="libro">LIBRO</label>
+                <input
+                  id="libro"
+                  type="number"
+                  formControlName="libro"
+                  class="form-control form-control-lg"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('libro')?.hasError('required') &&
+                    jugadorForm.get('libro')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col">
+                <label for="folio">FOLIO</label>
+                <input
+                  id="folio"
+                  type="number"
+                  formControlName="folio"
+                  class="form-control form-control-lg"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('folio')?.hasError('required') &&
+                    jugadorForm.get('folio')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+
+              <div class="col-9">
+                <div class="row">
+                  <div class="col">
+                    <label for="nombres">NOMBRES</label>
+                    <input
+                      id="nombres"
+                      type="text"
+                      formControlName="nombres"
+                      class="form-control form-control-lg"
+                      placeholder="Nombres"
+                    />
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        jugadorForm.get('nombres')?.hasError('required') &&
+                        jugadorForm.get('nombres')?.touched
+                      "
+                    >
+                      <span>Este campo es <strong>obligatorio</strong></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <label for="apellidos">APELLIDOS</label>
+                    <input
+                      id="apellidos"
+                      type="text"
+                      formControlName="apellidos"
+                      class="form-control form-control-lg"
+                      placeholder="Apellidos"
+                    />
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        jugadorForm.get('apellidos')?.hasError('required') &&
+                        jugadorForm.get('apellidos')?.touched
+                      "
+                    >
+                      <span>Este campo es <strong>obligatorio</strong></span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 export class Jugador {
   _id?: number;
+  cedula: string;
   dni: string;
   libro: string;
   folio: string;
@@ -13,6 +14,7 @@ export class Jugador {
   fecha_inscripcion: Date;
 
   constructor(
+    cedula: string,
     dni: string,
     libro: string,
     folio: string,
@@ -25,6 +27,7 @@ export class Jugador {
     nacionalidad: string,
     fecha_inscripcion: Date
   ) {
+    this.cedula = cedula;
     this.dni = dni;
     this.libro = libro;
     this.folio = folio;

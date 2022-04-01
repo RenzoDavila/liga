@@ -5,7 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { JugadorService } from 'src/app/services/jugador/jugador.service';
 import { Jugador } from 'src/app/models/Jugador';
 import { Club } from 'src/app/models/Club';
+import { Categoria } from 'src/app/models/Categoria';
 import { ClubService } from 'src/app/services/club/club.service';
+import { CategoriaService } from 'src/app/services/categoria/categoria.service';
 import { Fecha } from 'src/app/functions/fecha/fecha';
 @Component({
   selector: 'app-jug-crear-editar',
@@ -19,6 +21,7 @@ export class JugCrearEditarComponent implements OnInit {
   slcClub: boolean = true;
   cambioClub: boolean = false;
   listClubes: Club[] = [];
+  listCategorias: Categoria[] = [];
   jugadorClubes: Club[] = [];
   jugadorClubesSend: Club[] = [];
   Jugador: Jugador[] = [];
@@ -44,14 +47,16 @@ export class JugCrearEditarComponent implements OnInit {
     private toastr: ToastrService,
     private _jugadorService: JugadorService,
     private aRoute: ActivatedRoute,
-    private _clubService: ClubService
+    private _clubService: ClubService,
+    private _categoriaService: CategoriaService
   ) {
     this.jugadorForm = this.fb.group({
+      cedula: ['', Validators.required],
       dni: ['', Validators.required],
       libro: ['', Validators.required],
       folio: ['', Validators.required],
       nombres: ['', Validators.required],
-      apellidos: ['', Validators.required],
+      apellidos: [],
       categoria: ['', Validators.required],
       fecha_nacimiento: ['', Validators.required],
       ciudad_nacimiento: ['', Validators.required],
@@ -65,11 +70,13 @@ export class JugCrearEditarComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerClubes();
+    this.obtenerCategorias();
     this.getCLubes();
     let dateTime = new Date();
     console.log(dateTime.toISOString());
 
     this.jugadorForm.setValue({
+      cedula: '',
       dni: '',
       libro: '',
       folio: '',
@@ -116,6 +123,7 @@ export class JugCrearEditarComponent implements OnInit {
     console.log('this.jugadorClubesSend', this.jugadorClubesSend);
 
     const JUGADOR: Jugador = {
+      cedula: this.jugadorForm.get('cedula')?.value,
       dni: this.jugadorForm.get('dni')?.value,
       libro: this.jugadorForm.get('libro')?.value,
       folio: this.jugadorForm.get('folio')?.value,
@@ -183,7 +191,10 @@ export class JugCrearEditarComponent implements OnInit {
                 this.listClubes.find((e) => e._id === element.detalle)?.detalle
               ))
           );
+
+          console.log('data', data);
           this.jugadorForm.setValue({
+            cedula: data.cedula,
             dni: data.dni,
             libro: data.libro,
             folio: data.folio,
@@ -220,6 +231,50 @@ export class JugCrearEditarComponent implements OnInit {
       }
     );
     return true;
+  }
+
+  obtenerCategorias() {
+    this._categoriaService.getCategorias().subscribe(
+      (data) => {
+        this.listCategorias = data;
+        console.log('this.listCate', this.listCategorias);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    return true;
+  }
+
+  changeCategoria() {
+    let nacFec = this.jugadorForm.get('fecha_nacimiento')?.value;
+    nacFec = parseInt(nacFec.substring(0, 4));
+    this.listCategorias.forEach((cat) => {
+      const minFec = Fecha.formatDate_yyyy(cat.fecha_desde);
+      const maxFec = Fecha.formatDate_yyyy(cat.fecha_hasta);
+      if (nacFec >= minFec && nacFec <= maxFec) {
+        this.jugadorForm.patchValue({
+          categoria: cat.detalle,
+        });
+      }
+    });
+
+    // let temp = this.listCategorias.forEach((cat) => this.rango(cat));
+    // console.log("temp", temp)
+  }
+
+  rango(cat: Categoria) {
+    var response;
+    let nacFec = this.jugadorForm.get('fecha_nacimiento')?.value;
+    nacFec = parseInt(nacFec.substring(0, 4));
+    const minFec = Fecha.formatDate_yyyy(cat.fecha_desde);
+    const maxFec = Fecha.formatDate_yyyy(cat.fecha_hasta);
+
+    if (nacFec >= minFec && nacFec <= maxFec) {
+      response = cat.detalle;
+    }
+    return response;
+    // console.log('response', response);
   }
 
   slcClubChange() {

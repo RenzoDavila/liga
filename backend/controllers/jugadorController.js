@@ -37,6 +37,7 @@ exports.getByClub = async (req, res) => {
 exports.actualizarJugador = async (req, res) => {
   try {
     const {
+      cedula,
       dni,
       libro,
       folio,
@@ -56,6 +57,7 @@ exports.actualizarJugador = async (req, res) => {
       res.status(404).json({ msg: "El jugador no existe" });
     }
 
+    jugador.cedula = cedula;
     jugador.dni = dni;
     jugador.libro = libro;
     jugador.folio = folio;
