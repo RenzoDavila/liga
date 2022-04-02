@@ -18,15 +18,15 @@
           <h2>PARTE DELANTERA</h2>
         </div>
       </div>
-      <div id="carnet-delantero" style="width: 1116px">
+      <div id="carnet-delantero" class="carnet">
         <div *ngFor="let Jugador of listJugadores; let i = index">
           <div *ngIf="parImpar(i)">
-            <div class="row" style="width: 1116px">
+            <div class="row">
               <div class="col">
                 <div
                   class="border border-dark"
                   id="card"
-                  style="margin-left: 30px"
+                  style="margin-left: 30px; position: relative"
                 >
                   <img src="assets/img/carnet/fdpb.png" class="img1" />
                   <img
@@ -61,7 +61,7 @@
                 <div
                   class="border border-dark"
                   id="card"
-                  style="margin-left: -26px"
+                  style="margin-left: -26px; position: relative"
                 >
                   <img src="assets/img/carnet/fdpb.png" class="img1" />
                   <img
@@ -96,7 +96,7 @@
                 <div
                   class="border-start border-dark"
                   id="card"
-                  style="margin-left: -26px"
+                  style="margin-left: -26px; position: relative"
                 ></div>
               </div>
             </div>
@@ -108,31 +108,40 @@
           <h2>PARTE TRASERA</h2>
         </div>
       </div>
-      <div id="carnet-trasero" style="width: 1116px">
+      <div id="carnet-trasero" class="carnet">
         <div *ngFor="let Jugador of listJugadores; let i = index">
           <div *ngIf="parImpar(i)">
-            <div class="row" style="width: 1116px">
+            <div class="row">
               <div class="col" *ngIf="i + 1 < listJugadores.length">
                 <div
                   class="border border-dark"
                   id="card"
-                  style="margin-left: 30px"
+                  style="margin-left: 30px; position: relative"
                 >
                   <h2>CARNET DE AFILIACIÓN {{ year }}</h2>
-                  <br />
-                  <p>CÉDULA: {{ listJugadores[i + 1].dni }}</p>
-                  <p>APELLIDOS: {{ listJugadores[i + 1].apellidos }}</p>
-                  <p>NOMBRES: {{ listJugadores[i + 1].nombres }}</p>
-                  <!-- <p>CLUB: {{ listJugadores[i + 1].club_actual }}</p> -->
-                  <br />
-                  <div class="row" style="width: 500px">
+
+                  <div class="row mt-4">
+                    <div class="col-7">
+                      <p>APELLIDOS: {{ listJugadores[i + 1].apellidos }}</p>
+                    </div>
+                    <div class="col-5">
+                      <p>CÉDULA: {{ listJugadores[i + 1].cedula }}</p>
+                    </div>
+                    <div class="col-7">
+                      <p>NOMBRES: {{ listJugadores[i + 1].nombres }}</p>
+                    </div>
+                    <div class="col-5">
+                      <p>CLUB: {{ listJugadores[i + 1].club[0].detalle }}</p>
+                    </div>
                     <div class="col">
-                      <p class="bottom">_______________________ REGISTRADOR</p>
+                      <p class="bottom-back">
+                        __________________________ REGISTRADOR
+                      </p>
                     </div>
 
                     <div class="col">
-                      <p class="bottom">
-                        _______________________ FIRMA DEL JUGADOR
+                      <p class="bottom-back">
+                        __________________________ FIRMA DEL JUGADOR
                       </p>
                     </div>
                   </div>
@@ -145,26 +154,36 @@
                 <div
                   class="border border-dark"
                   id="card"
-                  style="margin-left: -26px"
+                  style="margin-left: -26px; position: relative"
                 >
                   <h2>CARNET DE AFILIACIÓN {{ year }}</h2>
-                  <br />
-                  <p>CÉDULA: {{ listJugadores[i].dni }}</p>
-                  <p>APELLIDOS:{{ listJugadores[i].apellidos }}</p>
-                  <p>NOMBRES: {{ listJugadores[i].nombres }}</p>
-                  <!-- <p>CLUB: {{ listJugadores[i].club_actual }}</p> -->
-                  <br />
-                  <div class="row" style="width: 500px">
+                  <div class="row mt-4">
+                    <div class="col-7">
+                      <p>APELLIDOS: {{ listJugadores[i].apellidos }}</p>
+                    </div>
+                    <div class="col-5">
+                      <p>CÉDULA: {{ listJugadores[i].cedula }}</p>
+                    </div>
+                    <div class="col-7">
+                      <p>NOMBRES: {{ listJugadores[i].nombres }}</p>
+                    </div>
+                    <div class="col-5">
+                      <p>CLUB: {{ listJugadores[i].club[0].detalle }}</p>
+                    </div>
                     <div class="col">
-                      <p class="bottom">_______________________ REGISTRADOR</p>
+                      <p class="bottom-back">
+                        __________________________ REGISTRADOR
+                      </p>
                     </div>
 
                     <div class="col">
-                      <p class="bottom">
-                        _______________________ FIRMA DEL JUGADOR
+                      <p class="bottom-back">
+                        __________________________ FIRMA DEL JUGADOR
                       </p>
                     </div>
                   </div>
+                  <!-- <div class="row mt-2" style="width: 500px">
+                  </div> -->
                 </div>
               </div>
             </div>

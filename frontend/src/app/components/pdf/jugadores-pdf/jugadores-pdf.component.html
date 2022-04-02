@@ -46,7 +46,9 @@
                 <th scope="row">{{ Jugador.dni }}</th>
                 <td>{{ Jugador.nombres }} {{ Jugador.apellidos }}</td>
                 <td>{{ Jugador.categoria }}</td>
-                <!-- <td>{{ Jugador.club_actual }}</td> -->
+                <td *ngIf="Jugador.club.length > 0">
+                  {{ Jugador.club[0].detalle }}
+                </td>
               </tr>
             </tbody>
           </table>

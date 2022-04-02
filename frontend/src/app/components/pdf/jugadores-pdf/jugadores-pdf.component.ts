@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Jugador } from 'src/app/models/Jugador';
 import { JugadorService } from 'src/app/services/jugador/jugador.service';
+import { ClubService } from 'src/app/services/club/club.service';
 
 @Component({
   selector: 'app-jugadores-pdf',
@@ -15,6 +16,7 @@ export class JugadoresPdfComponent implements OnInit {
 
   constructor(
     private _jugadorService: JugadorService,
+    private _clubService: ClubService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -33,13 +35,15 @@ export class JugadoresPdfComponent implements OnInit {
       }
     );
   }
+
   seleccionado(jugador: any) {
-    if (this.listJugadoresTabla.length > 9) {
-      this.toastr.warning('No puede agregar más de 10 carnets por hoja!');
+    if (this.listJugadoresTabla.length > 11) {
+      this.toastr.warning('No puede agregar más de 12 carnets por hoja!');
     } else {
       this._jugadorService.getJugador(jugador).subscribe(
         (data) => {
           this.listJugadoresTabla.push(data);
+          this.club();
         },
         (error) => {
           console.log(error);
@@ -67,5 +71,24 @@ export class JugadoresPdfComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  club() {
+    console.log('en club');
+    this.listJugadoresTabla.map((jugador) => {
+      if (jugador.club.length > 0) {
+        var id = jugador.club[0].detalle;
+        this._clubService.getClub(id).subscribe(
+          (data) => {
+            console.log('data.detalle', data.detalle);
+            jugador.club[0].detalle = data.detalle;
+            console.log('jugador', jugador);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+    });
   }
 }

@@ -58,36 +58,32 @@ export class PrePdfComponent implements OnInit {
     var newImg = '';
     var elementDel = document.getElementById('carnet-delantero');
     var element = document.getElementById('carnet-trasero');
-    var fila: number = 42;
+    var fila: number = 0;
 
     switch (this.listJugadores.length) {
       case 1:
       case 2:
-        fila = fila * 1;
+        fila = 46.7;
         break;
       case 3:
       case 4:
-        fila = fila * 2;
+        fila = 93.5;
         break;
       case 5:
       case 6:
-        fila = fila * 3;
-        break;
-      case 5:
-      case 6:
-        fila = fila * 4;
+        fila = 140;
         break;
       case 7:
       case 8:
-        fila = fila * 5;
+        fila = 186.5;
         break;
       case 9:
       case 10:
-        fila = fila * 6;
+        fila = 233;
         break;
       case 11:
       case 12:
-        fila = fila * 7;
+        fila = 280;
         break;
     }
 
