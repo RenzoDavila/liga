@@ -34,13 +34,6 @@ export class JugCrearEditarComponent implements OnInit {
     this.clubtemp = item._id;
     // do something with selected item
   }
-
-  openPopup() {
-    this.displayStyle = 'block';
-  }
-  closePopup() {
-    this.displayStyle = 'none';
-  }
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -110,17 +103,18 @@ export class JugCrearEditarComponent implements OnInit {
   }
 
   agregarJugador() {
-    console.log('this.clubtemp', this.clubtemp);
-
-    if (this.clubtemp != null || this.clubtemp != undefined) {
-      let dateTime = new Date();
-      this.jugadorClubesSend.unshift({
-        fecha_grabacion: dateTime.toISOString(),
-        detalle: this.clubtemp,
-      });
+    if (this.id == null) {
+      if (this.clubtemp != null || this.clubtemp != undefined) {
+        let dateTime = new Date();
+        this.jugadorClubesSend.unshift({
+          fecha_grabacion: dateTime.toISOString(),
+          detalle: this.clubtemp,
+          tipo: 'exterior',
+        });
+      } else {
+        console.log('no selecciono ningun club');
+      }
     }
-
-    console.log('this.jugadorClubesSend', this.jugadorClubesSend);
 
     const JUGADOR: Jugador = {
       cedula: this.jugadorForm.get('cedula')?.value,
@@ -247,34 +241,20 @@ export class JugCrearEditarComponent implements OnInit {
   }
 
   changeCategoria() {
+    let dateTime = new Date();
+    let year = parseInt(Fecha.formatDate_yyyy(dateTime.toISOString()));
     let nacFec = this.jugadorForm.get('fecha_nacimiento')?.value;
     nacFec = parseInt(nacFec.substring(0, 4));
     this.listCategorias.forEach((cat) => {
-      const minFec = Fecha.formatDate_yyyy(cat.fecha_desde);
-      const maxFec = Fecha.formatDate_yyyy(cat.fecha_hasta);
-      if (nacFec >= minFec && nacFec <= maxFec) {
+      const min = cat.desde;
+      const max = cat.hasta;
+      const age = year - nacFec;
+      if (age >= min && age <= max) {
         this.jugadorForm.patchValue({
           categoria: cat.detalle,
         });
       }
     });
-
-    // let temp = this.listCategorias.forEach((cat) => this.rango(cat));
-    // console.log("temp", temp)
-  }
-
-  rango(cat: Categoria) {
-    var response;
-    let nacFec = this.jugadorForm.get('fecha_nacimiento')?.value;
-    nacFec = parseInt(nacFec.substring(0, 4));
-    const minFec = Fecha.formatDate_yyyy(cat.fecha_desde);
-    const maxFec = Fecha.formatDate_yyyy(cat.fecha_hasta);
-
-    if (nacFec >= minFec && nacFec <= maxFec) {
-      response = cat.detalle;
-    }
-    return response;
-    // console.log('response', response);
   }
 
   slcClubChange() {

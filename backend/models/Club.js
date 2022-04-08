@@ -5,6 +5,10 @@ const ClubSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  tipo: {
+    type: String,
+    required: true,
+  },
   fecha_grabacion: {
     type: Date,
     default: Date.now(),

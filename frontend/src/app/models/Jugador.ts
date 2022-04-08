@@ -1,17 +1,17 @@
 export class Jugador {
   _id?: number;
-  cedula: string;
-  dni: string;
-  libro: string;
-  folio: string;
-  club: any;
-  apellidos: string;
-  nombres: string;
-  fecha_nacimiento: Date;
-  categoria: string;
-  ciudad_nacimiento: string;
-  nacionalidad: string;
-  fecha_inscripcion: Date;
+  cedula?: string;
+  dni?: string;
+  libro?: string;
+  folio?: string;
+  club?: any;
+  apellidos?: string;
+  nombres?: string;
+  fecha_nacimiento?: Date;
+  categoria?: string;
+  ciudad_nacimiento?: string;
+  nacionalidad?: string;
+  fecha_inscripcion?: Date;
 
   constructor(
     cedula: string,

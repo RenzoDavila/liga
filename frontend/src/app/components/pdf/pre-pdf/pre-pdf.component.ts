@@ -35,20 +35,6 @@ export class PrePdfComponent implements OnInit {
     }
   }
 
-  ultimoObjeto(numero: number) {
-    let ultimo = this.listJugadores.length - 1;
-    if (numero === ultimo) {
-      if (this.parImpar(this.listJugadores.length)) {
-        return false;
-      } else {
-        return true;
-      }
-    } else {
-      console.log(false);
-      return false;
-    }
-  }
-
   download() {
     console.log('en descargar pdf');
     var doc = new jsPDF('p', 'mm', [297, 210]);

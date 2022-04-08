@@ -5,12 +5,12 @@ const CategoriaSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  fecha_desde: {
-    type: Date,
+  desde: {
+    type: Number,
     required: true,
   },
-  fecha_hasta: {
-    type: Date,
+  hasta: {
+    type: Number,
     required: true,
   },
 });

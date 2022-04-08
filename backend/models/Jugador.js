@@ -20,6 +20,7 @@ const JugadorSchema = mongoose.Schema({
   club: [
     {
       detalle: { type: String, required: true },
+      tipo: { type: String, required: true },
       fecha_grabacion: { type: Date, default: Date.now() },
     },
   ],

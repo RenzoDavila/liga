@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-4">
   <div class="row cuerpo">
     <div class="col-lg-10 offset-lg-1">
       <div class="card">
@@ -251,7 +251,10 @@
               </div> -->
               <div class="col-4">
                 <label for="club_actual">CLUB ACTUAL</label>
-                <div class="form-control form-control-lg ng-autocomplete">
+                <div
+                  class="form-control form-control-lg ng-autocomplete"
+                  *ngIf="id == null"
+                >
                   <ng-autocomplete
                     [data]="listClubes"
                     id="club_actual"
@@ -271,6 +274,14 @@
                   <ng-template #notFoundTemplate let-notFound>
                     <div [innerHTML]="notFound"></div>
                   </ng-template>
+                </div>
+                <div *ngIf="id !== null">
+                  <input
+                    type="text"
+                    formControlName="club_actual"
+                    class="form-control form-control-lg"
+                    readonly
+                  />
                 </div>
               </div>
             </div>

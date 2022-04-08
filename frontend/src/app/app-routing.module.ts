@@ -6,6 +6,7 @@ import { CarVerComponent } from './components/cargo/car-ver/car-ver.component';
 import { CatCrearEditarComponent } from './components/categoria/cat-crear-editar/cat-crear-editar.component';
 import { CatVerComponent } from './components/categoria/cat-ver/cat-ver.component';
 import { CluCrearEditarComponent } from './components/club/clu-crear-editar/clu-crear-editar.component';
+import { CluTransferirComponent } from './components/club/clu-transferir/clu-transferir.component';
 import { CluVerComponent } from './components/club/clu-ver/clu-ver.component';
 import { DirCrearEditarComponent } from './components/dirigente/dir-crear-editar/dir-crear-editar.component';
 import { DirVerComponent } from './components/dirigente/dir-ver/dir-ver.component';
@@ -13,6 +14,7 @@ import { EntCrearEditarComponent } from './components/entrenador/ent-crear-edita
 import { EntVerComponent } from './components/entrenador/ent-ver/ent-ver.component';
 import { JugCrearEditarComponent } from './components/jugador/jug-crear-editar/jug-crear-editar.component';
 import { JugVerComponent } from './components/jugador/jug-ver/jug-ver.component';
+import { CedulaPdfComponent } from './components/pdf/cedula-pdf/cedula-pdf.component';
 import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-pdf.component';
 import { PrePdfComponent } from './components/pdf/pre-pdf/pre-pdf.component';
 
@@ -38,6 +40,8 @@ const routes: Routes = [
   { path: 'editar-categoria/:id', component: CatCrearEditarComponent },
   { path: 'vizualizacion-pdf', component: PrePdfComponent },
   { path: 'jugadores-pdf', component: JugadoresPdfComponent },
+  { path: 'cedula-pdf/:id', component: CedulaPdfComponent },
+  { path: 'transferir/:id', component: CluTransferirComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

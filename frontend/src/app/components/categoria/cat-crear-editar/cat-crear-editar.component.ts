@@ -25,8 +25,8 @@ export class CatCrearEditarComponent implements OnInit {
   ) {
     this.categoriaForm = this.fb.group({
       categoria: ['', Validators.required],
-      fecha_desde: ['', Validators.required],
-      fecha_hasta: ['', Validators.required],
+      desde: ['', Validators.required],
+      hasta: ['', Validators.required],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id');
   }
@@ -39,8 +39,8 @@ export class CatCrearEditarComponent implements OnInit {
   agregarCategoria() {
     const CATEGORIA: Categoria = {
       detalle: this.categoriaForm.get('categoria')?.value,
-      fecha_desde: this.categoriaForm.get('fecha_desde')?.value,
-      fecha_hasta: this.categoriaForm.get('fecha_hasta')?.value,
+      desde: this.categoriaForm.get('desde')?.value,
+      hasta: this.categoriaForm.get('hasta')?.value,
     };
 
     console.log(CATEGORIA);
@@ -87,8 +87,8 @@ export class CatCrearEditarComponent implements OnInit {
         (data) => {
           this.categoriaForm.setValue({
             categoria: data.detalle,
-            fecha_desde: Fecha.formatDate_yyyymmdd(data.fecha_desde),
-            fecha_hasta: Fecha.formatDate_yyyymmdd(data.fecha_hasta),
+            desde: data.desde,
+            hasta: data.hasta,
           });
         },
         (error) => {

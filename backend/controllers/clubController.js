@@ -24,7 +24,7 @@ exports.obtenerClubes = async (req, res) => {
 
 exports.actualizarClub = async (req, res) => {
   try {
-    const { detalle, fecha_grabacion } = req.body;
+    const { detalle, tipo, fecha_grabacion } = req.body;
 
     let club = await Club.findById(req.params.id);
 
@@ -33,6 +33,7 @@ exports.actualizarClub = async (req, res) => {
     }
 
     club.detalle = detalle;
+    club.tipo = tipo;
     club.fecha_grabacion = fecha_grabacion;
 
     club = await Club.findOneAndUpdate({ _id: req.params.id }, club, {

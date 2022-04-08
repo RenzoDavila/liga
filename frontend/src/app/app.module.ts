@@ -30,6 +30,8 @@ import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { CatVerComponent } from './components/categoria/cat-ver/cat-ver.component';
 import { CatCrearEditarComponent } from './components/categoria/cat-crear-editar/cat-crear-editar.component';
+import { CedulaPdfComponent } from './components/pdf/cedula-pdf/cedula-pdf.component';
+import { CluTransferirComponent } from './components/club/clu-transferir/clu-transferir.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { CatCrearEditarComponent } from './components/categoria/cat-crear-editar
     JugadoresPdfComponent,
     CatVerComponent,
     CatCrearEditarComponent,
+    CedulaPdfComponent,
+    CluTransferirComponent,
   ],
   imports: [
     BrowserModule,

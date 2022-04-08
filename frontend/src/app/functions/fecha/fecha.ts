@@ -23,4 +23,11 @@ export class Fecha {
     const year = split2[0];
     return year;
   }
+
+  static formatDate_yyyy_num(date: any) {
+    const split1 = String(date).split('T');
+    const split2 = split1[0].split('-');
+    const year = split2[0];
+    return parseInt(year);
+  }
 }

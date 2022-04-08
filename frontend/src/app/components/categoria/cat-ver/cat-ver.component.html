@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-4">
   <div class="row cuerpo">
     <div class="col-lg-8 offset-lg-2">
       <div class="card">
@@ -17,16 +17,16 @@
             <thead>
               <tr>
                 <th scope="col">Detalle</th>
-                <th scope="col">Fecha de desde</th>
-                <th scope="col">Fecha de hasta</th>
+                <th scope="col">Desde</th>
+                <th scope="col">Hasta</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let Categoria of listCategorias">
                 <th scope="row">{{ Categoria.detalle }}</th>
-                <td>{{ formatDate_yyyymmdd(Categoria.fecha_desde) }}</td>
-                <td>{{ formatDate_yyyymmdd(Categoria.fecha_hasta) }}</td>
+                <td>{{ Categoria.desde }}</td>
+                <td>{{ Categoria.hasta }}</td>
                 <td>
                   <i
                     [routerLink]="['/editar-categoria', Categoria._id]"

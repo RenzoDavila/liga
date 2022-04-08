@@ -24,7 +24,7 @@ exports.obtenerCategorias = async (req, res) => {
 
 exports.actualizarCategoria = async (req, res) => {
   try {
-    const { detalle, fecha_desde, fecha_hasta } = req.body;
+    const { detalle, desde, hasta } = req.body;
 
     let categoria = await Categoria.findById(req.params.id);
 
@@ -33,8 +33,8 @@ exports.actualizarCategoria = async (req, res) => {
     }
 
     categoria.detalle = detalle;
-    categoria.fecha_desde = fecha_desde;
-    categoria.fecha_hasta = fecha_hasta;
+    categoria.desde = desde;
+    categoria.hasta = hasta;
 
     categoria = await Categoria.findOneAndUpdate(
       { _id: req.params.id },

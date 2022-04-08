@@ -1,12 +1,12 @@
 export class Categoria {
   _id?: number;
   detalle: string;
-  fecha_desde: Date;
-  fecha_hasta: Date;
+  desde: number;
+  hasta: number;
 
-  constructor(detalle: string, fecha_desde: Date, fecha_hasta: Date) {
+  constructor(detalle: string, desde: number, hasta: number) {
     this.detalle = detalle;
-    this.fecha_desde = fecha_desde;
-    this.fecha_hasta = fecha_hasta;
+    this.desde = desde;
+    this.hasta = hasta;
   }
 }

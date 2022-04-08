@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-4">
   <div class="row cuerpo">
     <div class="col-lg-10 offset-lg-1">
       <div class="card">
@@ -11,7 +11,7 @@
           >
             <div class="row mb-3">
               <div class="col-sm-4 mx-auto">
-                <label for="fecha_desde">CATEGORIA</label>
+                <label for="categoria">CATEGORIA</label>
                 <input
                   type="text"
                   formControlName="categoria"
@@ -31,19 +31,19 @@
             </div>
             <div class="row mb-3">
               <div class="col-sm-4 mx-auto">
-                <label for="fecha_desde">FECHA DESDE</label>
+                <label for="desde">DESDE</label>
                 <input
-                  id="fecha_desde"
-                  type="date"
-                  formControlName="fecha_desde"
+                  id="desde"
+                  type="number"
+                  formControlName="desde"
                   class="form-control form-control-lg"
-                  placeholder="dd/mm/aaaa"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
                 />
                 <div
                   class="text-danger"
                   *ngIf="
-                    categoriaForm.get('fecha_desde')?.hasError('required') &&
-                    categoriaForm.get('fecha_desde')?.touched
+                    categoriaForm.get('desde')?.hasError('required') &&
+                    categoriaForm.get('desde')?.touched
                   "
                 >
                   <span>Este campo es <strong>obligatorio</strong></span>
@@ -52,19 +52,19 @@
             </div>
             <div class="row mb-3">
               <div class="col-sm-4 mx-auto">
-                <label for="fecha_hasta">FECHA HASTA</label>
+                <label for="fecha_hasta">HASTA</label>
                 <input
-                  id="fecha_hasta"
-                  type="date"
-                  formControlName="fecha_hasta"
+                  id="hasta"
+                  type="number"
+                  formControlName="hasta"
                   class="form-control form-control-lg"
-                  placeholder="dd/mm/aaaa"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
                 />
                 <div
                   class="text-danger"
                   *ngIf="
-                    categoriaForm.get('fecha_hasta')?.hasError('required') &&
-                    categoriaForm.get('fecha_hasta')?.touched
+                    categoriaForm.get('hasta')?.hasError('required') &&
+                    categoriaForm.get('hasta')?.touched
                   "
                 >
                   <span>Este campo es <strong>obligatorio</strong></span>
