@@ -66,7 +66,6 @@ export class JugCrearEditarComponent implements OnInit {
     this.obtenerCategorias();
     this.getCLubes();
     let dateTime = new Date();
-    console.log(dateTime.toISOString());
 
     this.jugadorForm.setValue({
       cedula: '',
@@ -93,7 +92,6 @@ export class JugCrearEditarComponent implements OnInit {
       this._jugadorService.getJugador(this.id).subscribe(
         (data) => {
           this.jugadorClubesSend = data.club;
-          console.log('this.jugadorClubesSend', this.jugadorClubesSend);
         },
         (error) => {
           console.log(error);
@@ -105,14 +103,12 @@ export class JugCrearEditarComponent implements OnInit {
   agregarJugador() {
     if (this.id == null) {
       if (this.clubtemp != null || this.clubtemp != undefined) {
-        let dateTime = new Date();
         this.jugadorClubesSend.unshift({
-          fecha_grabacion: dateTime.toISOString(),
+          fecha_grabacion: this.jugadorForm.get('fecha_inscripcion')?.value,
           detalle: this.clubtemp,
-          tipo: 'exterior',
+          tipo: 'externo',
         });
       } else {
-        console.log('no selecciono ningun club');
       }
     }
 
@@ -132,15 +128,14 @@ export class JugCrearEditarComponent implements OnInit {
     };
 
     if (this.id !== null) {
-      console.log('editar jugador', JUGADOR);
       this._jugadorService.editJugador(this.id, JUGADOR).subscribe(
         (data) => {
           this.toastr.success(
             'El jugador ' +
-              this.jugadorForm.get('nombres')?.value +
-              ' ' +
-              this.jugadorForm.get('apellidos')?.value +
-              ' fue actualizado correctamente!',
+            this.jugadorForm.get('nombres')?.value +
+            ' ' +
+            this.jugadorForm.get('apellidos')?.value +
+            ' fue actualizado correctamente!',
             'Jugador actualizado!'
           );
           this.router.navigate(['/jugador']);
@@ -151,15 +146,14 @@ export class JugCrearEditarComponent implements OnInit {
         }
       );
     } else {
-      console.log('nuevo jugador', JUGADOR);
       this._jugadorService.saveJugador(JUGADOR).subscribe(
         (data) => {
           this.toastr.success(
             'El jugador ' +
-              this.jugadorForm.get('nombres')?.value +
-              ' ' +
-              this.jugadorForm.get('apellidos')?.value +
-              ' fue agregado correctamente!',
+            this.jugadorForm.get('nombres')?.value +
+            ' ' +
+            this.jugadorForm.get('apellidos')?.value +
+            ' fue agregado correctamente!',
             'Jugador agregado!'
           );
           this.router.navigate(['/jugador']);
@@ -181,12 +175,11 @@ export class JugCrearEditarComponent implements OnInit {
           this.jugadorClubes = data.club;
           this.jugadorClubes.forEach(
             (element: { detalle: string }) =>
-              (element.detalle = String(
-                this.listClubes.find((e) => e._id === element.detalle)?.detalle
-              ))
+            (element.detalle = String(
+              this.listClubes.find((e) => e._id === element.detalle)?.detalle
+            ))
           );
 
-          console.log('data', data);
           this.jugadorForm.setValue({
             cedula: data.cedula,
             dni: data.dni,
@@ -231,7 +224,6 @@ export class JugCrearEditarComponent implements OnInit {
     this._categoriaService.getCategorias().subscribe(
       (data) => {
         this.listCategorias = data;
-        console.log('this.listCate', this.listCategorias);
       },
       (error) => {
         console.log(error);

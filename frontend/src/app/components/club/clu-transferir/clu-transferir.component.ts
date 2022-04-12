@@ -72,8 +72,6 @@ export class CluTransferirComponent implements OnInit {
       });
     }
 
-    console.log('this.jugadorClubesSend', this.jugadorClubesSend);
-
     const JUGADOR: Jugador = {
       club: this.jugadorClubesSend,
     };
@@ -104,9 +102,9 @@ export class CluTransferirComponent implements OnInit {
           this.jugadorClubes = data.club;
           this.jugadorClubes.forEach(
             (element: { detalle: string }) =>
-              (element.detalle = String(
-                this.listClubes.find((e) => e._id === element.detalle)?.detalle
-              ))
+            (element.detalle = String(
+              this.listClubes.find((e) => e._id === element.detalle)?.detalle
+            ))
           );
         },
         (error) => {

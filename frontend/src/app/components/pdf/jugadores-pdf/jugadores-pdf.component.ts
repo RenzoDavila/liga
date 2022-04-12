@@ -19,7 +19,7 @@ export class JugadoresPdfComponent implements OnInit {
     private _clubService: ClubService,
     private toastr: ToastrService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.obtenerJugadores();
@@ -74,15 +74,12 @@ export class JugadoresPdfComponent implements OnInit {
   }
 
   club() {
-    console.log('en club');
     this.listJugadoresTabla.map((jugador) => {
       if (jugador.club.length > 0) {
         var id = jugador.club[0].detalle;
         this._clubService.getClub(id).subscribe(
           (data) => {
-            console.log('data.detalle', data.detalle);
             jugador.club[0].detalle = data.detalle;
-            console.log('jugador', jugador);
           },
           (error) => {
             console.log(error);

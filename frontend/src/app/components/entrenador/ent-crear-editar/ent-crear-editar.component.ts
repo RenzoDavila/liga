@@ -57,18 +57,15 @@ export class EntCrearEditarComponent implements OnInit {
       telefono: this.entrenadorForm.get('telefono')?.value,
     };
 
-    console.log(ENTRENADOR);
-
     if (this.id !== null) {
-      console.log('editar entrenador', ENTRENADOR);
       this._entrenadorService.editEntrenador(this.id, ENTRENADOR).subscribe(
         (data) => {
           this.toastr.success(
             'El entrenador ' +
-              this.entrenadorForm.get('nombres')?.value +
-              ' ' +
-              this.entrenadorForm.get('apellidos')?.value +
-              ' fue actualizado correctamente!',
+            this.entrenadorForm.get('nombres')?.value +
+            ' ' +
+            this.entrenadorForm.get('apellidos')?.value +
+            ' fue actualizado correctamente!',
             'Entrenador actualizado!'
           );
           this.router.navigate(['/entrenador']);
@@ -79,15 +76,14 @@ export class EntCrearEditarComponent implements OnInit {
         }
       );
     } else {
-      console.log('nuevo entrenador');
       this._entrenadorService.saveEntrenador(ENTRENADOR).subscribe(
         (data) => {
           this.toastr.success(
             'El entrenador ' +
-              this.entrenadorForm.get('nombres')?.value +
-              ' ' +
-              this.entrenadorForm.get('apellidos')?.value +
-              ' fue agregado correctamente!',
+            this.entrenadorForm.get('nombres')?.value +
+            ' ' +
+            this.entrenadorForm.get('apellidos')?.value +
+            ' fue agregado correctamente!',
             'Entrenador agregado!'
           );
           this.router.navigate(['/entrenador']);
@@ -105,7 +101,6 @@ export class EntCrearEditarComponent implements OnInit {
       this.titulo = 'Editar Entrenador';
       this._entrenadorService.getEntrenador(this.id).subscribe(
         (data) => {
-          console.log('data', data);
           this.entrenadorForm.setValue({
             dni: data.dni,
             club: data.club,
@@ -127,7 +122,6 @@ export class EntCrearEditarComponent implements OnInit {
   obtenerClubes() {
     this._clubService.getClubes().subscribe(
       (data) => {
-        console.log('data', data);
         this.listClubes = data;
       },
       (error) => {

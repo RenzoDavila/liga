@@ -16,10 +16,9 @@ export class JugVerComponent implements OnInit {
     private _jugadorService: JugadorService,
     private _clubService: ClubService,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    console.log('Estamos en ver jugadores');
     this.obtenerJugadores();
   }
 

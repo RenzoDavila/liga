@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class JugadorService {
   url = 'http://localhost:4000/api/jugadores/';
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
   private data: any;
 
   setData(data: any) {
@@ -44,5 +44,9 @@ export class JugadorService {
 
   editJugador(id: string, jugador: Jugador): Observable<any> {
     return this.http.put(this.url + id, jugador);
+  }
+
+  getConFiltros(filtros: any): Observable<any> {
+    return this.http.get(this.url + 'getByFilters/' + filtros);
   }
 }

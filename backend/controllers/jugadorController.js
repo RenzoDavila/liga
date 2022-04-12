@@ -22,15 +22,42 @@ exports.obtenerJugadores = async (req, res) => {
   }
 };
 
-exports.getByClub = async (req, res) => {
+exports.getByFilters = async (req, res) => {
   try {
-    const club_actual = req.query;
-    console.log(club_actual);
-    const club = await Jugador.find(club_actual);
-    res.json(club);
+    var filtros = {};
+
+    const filtrosParams = req.params.filtros;
+    const filtrosArray = filtrosParams.split("&");
+    const cat = filtrosArray[0].split("=");
+    const clu = filtrosArray[1].split("=");
+
+    const categoriaValue = cat[1];
+    if (
+      !categoriaValue == "" ||
+      !categoriaValue == null ||
+      !categoriaValue == undefined
+    ) {
+      var categoriaFilter = {
+        categoria: categoriaValue,
+      };
+
+      Object.assign(filtros, categoriaFilter);
+    }
+
+    const clubValue = clu[1];
+    if (!clubValue == "" || !clubValue == null || !clubValue == undefined) {
+      var clubFilter = {
+        "club.0.detalle": clubValue,
+      };
+
+      Object.assign(filtros, clubFilter);
+    }
+
+    const jugadores = await Jugador.find(filtros);
+    res.json(jugadores);
   } catch (error) {
     console.log(error);
-    res.status(500).send("tenemos problemas en visualizar    Jugadores");
+    res.status(500).send("tenemos problemas en getByFilters");
   }
 };
 

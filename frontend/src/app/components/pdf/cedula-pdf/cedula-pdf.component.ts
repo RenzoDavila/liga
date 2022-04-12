@@ -70,14 +70,12 @@ export class CedulaPdfComponent implements OnInit {
   }
 
   download() {
-    console.log('en descargar pdf');
     var doc = new jsPDF('p', 'mm', [297, 210]);
     var newImgDel = '';
     var elementDel = document.getElementById('cedula');
 
     if (elementDel != null) {
       html2canvas(elementDel).then((canvasDel) => {
-        console.log('canvasDel', canvasDel);
         newImgDel = canvasDel.toDataURL('image/png');
 
         // setTimeout(function () {

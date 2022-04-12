@@ -32,6 +32,7 @@ import { CatVerComponent } from './components/categoria/cat-ver/cat-ver.componen
 import { CatCrearEditarComponent } from './components/categoria/cat-crear-editar/cat-crear-editar.component';
 import { CedulaPdfComponent } from './components/pdf/cedula-pdf/cedula-pdf.component';
 import { CluTransferirComponent } from './components/club/clu-transferir/clu-transferir.component';
+import { RepClubCategoriaComponent } from './components/reportes/rep-club-categoria/rep-club-categoria.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CluTransferirComponent } from './components/club/clu-transferir/clu-tra
     CatCrearEditarComponent,
     CedulaPdfComponent,
     CluTransferirComponent,
+    RepClubCategoriaComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,17 +14,15 @@ export class EntVerComponent implements OnInit {
   constructor(
     private _entrenadorService: EntrenadorService,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    console.log('Estamos en ver entrenadors');
     this.obtenerEntrenadors();
   }
 
   obtenerEntrenadors() {
     this._entrenadorService.getEntrenadores().subscribe(
       (data) => {
-        console.log('data', data);
         this.listEntrenadors = data;
       },
       (error) => {

@@ -17,6 +17,7 @@ import { JugVerComponent } from './components/jugador/jug-ver/jug-ver.component'
 import { CedulaPdfComponent } from './components/pdf/cedula-pdf/cedula-pdf.component';
 import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-pdf.component';
 import { PrePdfComponent } from './components/pdf/pre-pdf/pre-pdf.component';
+import { RepClubCategoriaComponent } from './components/reportes/rep-club-categoria/rep-club-categoria.component';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'jugadores-pdf', component: JugadoresPdfComponent },
   { path: 'cedula-pdf/:id', component: CedulaPdfComponent },
   { path: 'transferir/:id', component: CluTransferirComponent },
+  { path: 'reporte-club-categoria', component: RepClubCategoriaComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

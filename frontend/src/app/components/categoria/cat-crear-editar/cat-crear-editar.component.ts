@@ -43,15 +43,13 @@ export class CatCrearEditarComponent implements OnInit {
       hasta: this.categoriaForm.get('hasta')?.value,
     };
 
-    console.log(CATEGORIA);
-
     if (this.id !== null) {
       this._categoriaService.editCategoria(this.id, CATEGORIA).subscribe(
         (data) => {
           this.toastr.success(
             'El categoria ' +
-              this.categoriaForm.get('categoria')?.value +
-              ' fue actualizado correctamente!',
+            this.categoriaForm.get('categoria')?.value +
+            ' fue actualizado correctamente!',
             'Categoria actualizado!'
           );
           this.router.navigate(['/categoria']);
@@ -66,8 +64,8 @@ export class CatCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El categoria ' +
-              this.categoriaForm.get('categoria')?.value +
-              ' fue agregado correctamente!',
+            this.categoriaForm.get('categoria')?.value +
+            ' fue agregado correctamente!',
             'Categoria agregado!'
           );
           this.router.navigate(['/categoria']);

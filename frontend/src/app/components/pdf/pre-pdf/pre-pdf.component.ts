@@ -17,15 +17,13 @@ export class PrePdfComponent implements OnInit {
   year = this.currentTime.getFullYear();
   constructor(private _jugadorService: JugadorService, private router: Router) {
     if (this.data) {
-      console.log('tenemos data', this.data);
       this.listJugadores = this.data;
-      console.log('tenemos listJugadores', this.listJugadores);
     } else {
       this.router.navigateByUrl('/jugadores-pdf');
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   parImpar(numero: number) {
     if (numero % 2 == 0) {
@@ -36,7 +34,6 @@ export class PrePdfComponent implements OnInit {
   }
 
   download() {
-    console.log('en descargar pdf');
     var doc = new jsPDF('p', 'mm', [297, 210]);
     var pageHeight = doc.internal.pageSize.height;
     var pageWidth = doc.internal.pageSize.width;
@@ -75,14 +72,12 @@ export class PrePdfComponent implements OnInit {
 
     if (elementDel != null) {
       html2canvas(elementDel).then((canvasDel) => {
-        console.log('canvasDel', canvasDel);
         newImgDel = canvasDel.toDataURL('image/png');
       });
     }
 
     if (element != null) {
       html2canvas(element).then((canvas) => {
-        console.log('canvas', canvas);
         newImg = canvas.toDataURL('image/png');
 
         setTimeout(function () {
