@@ -18,6 +18,13 @@ export class EntCrearEditarComponent implements OnInit {
   id: string | null;
   slcClub: boolean = true;
   listClubes: Club[] = [];
+  keywordClub = 'detalle';
+  clubtemp = '';
+
+  selectEvent(item: any) {
+    this.clubtemp = item.detalle;
+    // do something with selected item
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +36,7 @@ export class EntCrearEditarComponent implements OnInit {
   ) {
     this.entrenadorForm = this.fb.group({
       dni: ['', Validators.required],
-      club: ['Seleccione un club', Validators.required],
+      club: ['', Validators.required],
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
       nacionalidad: ['', Validators.required],
@@ -50,7 +57,7 @@ export class EntCrearEditarComponent implements OnInit {
   agregarEntrenador() {
     const ENTRENADOR: Entrenador = {
       dni: this.entrenadorForm.get('dni')?.value,
-      club: this.entrenadorForm.get('club')?.value,
+      club: this.clubtemp,
       apellidos: this.entrenadorForm.get('apellidos')?.value,
       nombres: this.entrenadorForm.get('nombres')?.value,
       nacionalidad: this.entrenadorForm.get('nacionalidad')?.value,
@@ -101,6 +108,7 @@ export class EntCrearEditarComponent implements OnInit {
       this.titulo = 'Editar Entrenador';
       this._entrenadorService.getEntrenador(this.id).subscribe(
         (data) => {
+          this.clubtemp = data.club;
           this.entrenadorForm.setValue({
             dni: data.dni,
             club: data.club,

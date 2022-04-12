@@ -22,6 +22,18 @@ export class DirCrearEditarComponent implements OnInit {
   listCargos: Cargo[] = [];
   slcClub: boolean = true;
   listClubes: Club[] = [];
+  keyword = 'detalle';
+  clubtemp = '';
+  cargotemp = '';
+
+  selectClub(item: any) {
+    this.clubtemp = item.detalle;
+  }
+
+  selectCargo(item: any) {
+    this.cargotemp = item.detalle;
+    console.log("en selectCargo", this.cargotemp)
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -34,8 +46,8 @@ export class DirCrearEditarComponent implements OnInit {
   ) {
     this.dirigenteForm = this.fb.group({
       dni: ['', Validators.required],
-      club: ['Seleccione un club', Validators.required],
-      cargo: ['Seleccione un cargo', Validators.required],
+      club: ['', Validators.required],
+      cargo: ['', Validators.required],
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
       telefono: ['', Validators.required],
@@ -56,8 +68,8 @@ export class DirCrearEditarComponent implements OnInit {
   agregarDirigente() {
     const DIRIGENTE: Dirigente = {
       dni: this.dirigenteForm.get('dni')?.value,
-      club: this.dirigenteForm.get('club')?.value,
-      cargo: this.dirigenteForm.get('cargo')?.value,
+      club: this.clubtemp,
+      cargo: this.cargotemp,
       nombres: this.dirigenteForm.get('nombres')?.value,
       apellidos: this.dirigenteForm.get('apellidos')?.value,
       telefono: this.dirigenteForm.get('telefono')?.value,
@@ -68,10 +80,10 @@ export class DirCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El dirigente ' +
-              this.dirigenteForm.get('nombres')?.value +
-              ' ' +
-              this.dirigenteForm.get('apellidos')?.value +
-              ' fue actualizado correctamente!',
+            this.dirigenteForm.get('nombres')?.value +
+            ' ' +
+            this.dirigenteForm.get('apellidos')?.value +
+            ' fue actualizado correctamente!',
             'Dirigente actualizado!'
           );
           this.router.navigate(['/dirigente']);
@@ -86,10 +98,10 @@ export class DirCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El dirigente ' +
-              this.dirigenteForm.get('nombres')?.value +
-              ' ' +
-              this.dirigenteForm.get('apellidos')?.value +
-              ' fue agregado correctamente!',
+            this.dirigenteForm.get('nombres')?.value +
+            ' ' +
+            this.dirigenteForm.get('apellidos')?.value +
+            ' fue agregado correctamente!',
             'Dirigente agregado!'
           );
           this.router.navigate(['/dirigente']);
@@ -107,6 +119,8 @@ export class DirCrearEditarComponent implements OnInit {
       this.titulo = 'Editar Dirigente';
       this._dirigenteService.getDirigente(this.id).subscribe(
         (data) => {
+          this.clubtemp = data.club;
+          this.cargotemp = data.cargo;
           this.dirigenteForm.setValue({
             dni: data.dni,
             club: data.club,
