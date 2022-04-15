@@ -33,6 +33,8 @@ import { CatCrearEditarComponent } from './components/categoria/cat-crear-editar
 import { CedulaPdfComponent } from './components/pdf/cedula-pdf/cedula-pdf.component';
 import { CluTransferirComponent } from './components/club/clu-transferir/clu-transferir.component';
 import { RepClubCategoriaComponent } from './components/reportes/rep-club-categoria/rep-club-categoria.component';
+import { DirigentesPdfComponent } from './components/pdf/dirigentes-pdf/dirigentes-pdf.component';
+import { EntrenadoresPdfComponent } from './components/pdf/entrenadores-pdf/entrenadores-pdf.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { RepClubCategoriaComponent } from './components/reportes/rep-club-catego
     CedulaPdfComponent,
     CluTransferirComponent,
     RepClubCategoriaComponent,
+    DirigentesPdfComponent,
+    EntrenadoresPdfComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,4 +77,4 @@ import { RepClubCategoriaComponent } from './components/reportes/rep-club-catego
   providers: [DatePipe],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

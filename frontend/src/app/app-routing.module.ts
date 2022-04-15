@@ -15,6 +15,8 @@ import { EntVerComponent } from './components/entrenador/ent-ver/ent-ver.compone
 import { JugCrearEditarComponent } from './components/jugador/jug-crear-editar/jug-crear-editar.component';
 import { JugVerComponent } from './components/jugador/jug-ver/jug-ver.component';
 import { CedulaPdfComponent } from './components/pdf/cedula-pdf/cedula-pdf.component';
+import { DirigentesPdfComponent } from './components/pdf/dirigentes-pdf/dirigentes-pdf.component';
+import { EntrenadoresPdfComponent } from './components/pdf/entrenadores-pdf/entrenadores-pdf.component';
 import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-pdf.component';
 import { PrePdfComponent } from './components/pdf/pre-pdf/pre-pdf.component';
 import { RepClubCategoriaComponent } from './components/reportes/rep-club-categoria/rep-club-categoria.component';
@@ -41,6 +43,8 @@ const routes: Routes = [
   { path: 'editar-categoria/:id', component: CatCrearEditarComponent },
   { path: 'vizualizacion-pdf', component: PrePdfComponent },
   { path: 'jugadores-pdf', component: JugadoresPdfComponent },
+  { path: 'dirigentes-pdf', component: DirigentesPdfComponent },
+  { path: 'entrenadores-pdf', component: EntrenadoresPdfComponent },
   { path: 'cedula-pdf/:id', component: CedulaPdfComponent },
   { path: 'transferir/:id', component: CluTransferirComponent },
   { path: 'reporte-club-categoria', component: RepClubCategoriaComponent },
@@ -51,4 +55,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

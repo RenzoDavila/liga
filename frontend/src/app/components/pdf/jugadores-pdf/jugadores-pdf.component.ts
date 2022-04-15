@@ -13,6 +13,26 @@ import { ClubService } from 'src/app/services/club/club.service';
 export class JugadoresPdfComponent implements OnInit {
   listJugadores: Jugador[] = [];
   listJugadoresTabla: Jugador[] = [];
+  jugadortemp = '';
+
+  selectEvent(item: any) {
+    this.jugadortemp = item._id;
+    console.log(this.jugadortemp)
+
+    if (this.listJugadoresTabla.length > 11) {
+      this.toastr.warning('No puede agregar más de 12 carnets por hoja!');
+    } else {
+      this._jugadorService.getJugador(this.jugadortemp).subscribe(
+        (data) => {
+          this.listJugadoresTabla.push(data);
+          this.club();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }
 
   constructor(
     private _jugadorService: JugadorService,
@@ -29,27 +49,12 @@ export class JugadoresPdfComponent implements OnInit {
     this._jugadorService.getJugadores().subscribe(
       (data) => {
         this.listJugadores = data;
+        console.log("this.listJugadores", this.listJugadores)
       },
       (error) => {
         console.log(error);
       }
     );
-  }
-
-  seleccionado(jugador: any) {
-    if (this.listJugadoresTabla.length > 11) {
-      this.toastr.warning('No puede agregar más de 12 carnets por hoja!');
-    } else {
-      this._jugadorService.getJugador(jugador).subscribe(
-        (data) => {
-          this.listJugadoresTabla.push(data);
-          this.club();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
   }
 
   quitar() {

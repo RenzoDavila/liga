@@ -8,7 +8,22 @@ import { Entrenador } from 'src/app/models/Entrenador';
 })
 export class EntrenadorService {
   url = 'http://localhost:4000/api/entrenadores/';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+  private data: any;
+
+  setData(data: any) {
+    this.data = data;
+  }
+
+  getData() {
+    let temp = this.data;
+    this.clearData();
+    return temp;
+  }
+
+  clearData() {
+    this.data = undefined;
+  }
 
   getEntrenadores(): Observable<any> {
     return this.http.get(this.url);

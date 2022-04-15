@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { JugadorService } from 'src/app/services/jugador/jugador.service';
+import { DirigenteService } from 'src/app/services/dirigente/dirigente.service';
 import { Router } from '@angular/router';
+import { EntrenadorService } from 'src/app/services/entrenador/entrenador.service';
 import { Jugador } from 'src/app/models/Jugador';
+import { Dirigente } from 'src/app/models/Dirigente';
+import { Entrenador } from 'src/app/models/Entrenador';
 
 @Component({
   selector: 'app-pre-pdf',
@@ -11,15 +15,28 @@ import { Jugador } from 'src/app/models/Jugador';
   styleUrls: ['./pre-pdf.component.scss'],
 })
 export class PrePdfComponent implements OnInit {
-  data = this._jugadorService.getData();
-  listJugadores: Jugador[] = [];
+  dataJugadores = this._jugadorService.getData();
+  dataDirigente = this._dirigenteService.getData();
+  dataEntrenador = this._entrenadorService.getData();
+  list: any;
   currentTime = new Date();
   year = this.currentTime.getFullYear();
-  constructor(private _jugadorService: JugadorService, private router: Router) {
-    if (this.data) {
-      this.listJugadores = this.data;
+  origenData = ''
+
+  constructor(private _jugadorService: JugadorService, private _dirigenteService: DirigenteService, private _entrenadorService: EntrenadorService, private router: Router) {
+    if (this.dataJugadores) {
+
+      this.list = this.dataJugadores;
+      this.origenData = "jug"
+    } else if (this.dataDirigente) {
+      this.list = this.dataDirigente;
+      this.origenData = "dir"
+    } else if (this.dataEntrenador) {
+      this.list = this.dataEntrenador;
+      this.origenData = "ent"
     } else {
-      this.router.navigateByUrl('/jugadores-pdf');
+      window.history.go(-1);
+      window.history.back();
     }
   }
 
@@ -43,7 +60,7 @@ export class PrePdfComponent implements OnInit {
     var element = document.getElementById('carnet-trasero');
     var fila: number = 0;
 
-    switch (this.listJugadores.length) {
+    switch (this.list.length) {
       case 1:
       case 2:
         fila = 46.7;

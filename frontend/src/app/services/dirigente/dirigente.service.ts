@@ -8,7 +8,22 @@ import { Dirigente } from 'src/app/models/Dirigente';
 })
 export class DirigenteService {
   url = 'http://localhost:4000/api/dirigentes/';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+  private data: any;
+
+  setData(data: any) {
+    this.data = data;
+  }
+
+  getData() {
+    let temp = this.data;
+    this.clearData();
+    return temp;
+  }
+
+  clearData() {
+    this.data = undefined;
+  }
 
   getDirigentes(): Observable<any> {
     return this.http.get(this.url);
