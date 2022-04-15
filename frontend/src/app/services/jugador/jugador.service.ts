@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Jugador } from 'src/app/models/Jugador';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JugadorService {
-  url = 'http://localhost:4000/api/jugadores/';
-  constructor(private http: HttpClient, private router: Router) { }
+  url = environment.server + 'api/jugadores/';
+  constructor(private http: HttpClient) { }
   private data: any;
 
   setData(data: any) {
